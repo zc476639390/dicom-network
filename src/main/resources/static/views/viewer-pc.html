@@ -1,0 +1,3485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="renderer" content="webkit"/><!--给360-->
+    <meta charset="UTF-8">
+    <title></title>
+
+
+    <!--main CSS start-->
+    <link href="../css/pc/units.css?v=1.0" rel="stylesheet">
+    <link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../lib/corner/cornerstone.min.css?v=1.0" rel="stylesheet">
+    <link href="../css/pc/colorStyle.css?v=1.0" rel="stylesheet">
+    <link href="../css/pc/widgets.css?v=1.0" rel="stylesheet">
+    <link href="../css/pc/main.css?v=1.0" rel="stylesheet">
+    <!--main CSS end-->
+    <!--printFilm start-->
+    <link rel="stylesheet" type="text/css" href="../css/printfilm/print.css"/>
+    <!--    <link rel="stylesheet" type="text/css" href="../css/printfilm/film.css"/>-->
+    <!--printFilm end-->
+    <!--mpr CSS start-->
+    <link rel="stylesheet" type="text/css" href="../css/webmpr/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webmpr/ui/toolbar.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webmpr/ui/menu.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webmpr/ui/dialog.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webmpr/utilities/nojs.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webmpr/utilities/unsupported.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/webmpr/viewer/viewer.css"/>
+    <!--mpr CSS end-->
+    <script src="../lib/js/jquery-2.1.4.min.js"></script>
+    <script src="../js/dist/wpacs.min.js"></script>
+    <script src="../config/config.js"></script>
+    <script src="../config/init.js"></script>
+    <script>
+        document.title = eSetting.sysName;
+    </script>
+
+    <script src="../lib/js/underscore-min.js"></script>
+    <script src="../lib/js/template-web.js"></script>
+    <script src="../lib/js/bootstrap.min.js"></script>
+    <script src="../lib/js/jpx.min.js"></script>
+    <!--    <script src="../lib/js/jszip3.js"></script>-->
+    <script src="../lib/js/md5.min.js"></script>
+    <script src="../lib/js/keypress-2.1.0.min.js"></script>
+    <!--    <script src="../lib/js/uids.js"></script>-->
+    <script src="../lib/js/comLib.min.js"></script>
+    <script src="../lib/js/jschardet.js"></script>
+    <script src="../lib/js/iconv.js"></script>
+    <script src="../js/dist/lib.min.js?v=1.1"></script>
+    <script>
+        var iconvForUse = iconv;
+    </script>
+
+    <!--drag start-->
+    <link href="../lib/drag/dragStyle.css?v=1.0" rel="stylesheet">
+    <script src="../lib/drag/drag.js"></script>
+    <!--drag end-->
+    <!--pop-up-start-->
+    <link href="../lib/pop-up/pop_up.css?v=1.0" rel="stylesheet">
+    <script src="../lib/pop-up/pop_up.js"></script>
+    <!--pop-up-end-->
+
+
+    <script src="../lib/corner/cornerstoneMath.min.js"></script>
+    <script src="../js/dist/corner.min.js?v=1.1"></script>
+    <script src="../lib/corner/cornerstoneWADOImageLoader.js"></script>
+    <script src="../lib/corner/cornerstoneWADOImageLoaderWebWorker.js"></script>
+    <script src="../lib/corner/cornerstoneWADOImageLoaderCodecs.js"></script>
+    <script src="../lib/corner/cornerexpand.js"></script>
+
+    <script>window.cornerstoneWADOImageLoader || document.write('<script src="http://unpkg.com/cornerstone-wado-image-loader">\x3C/script>')</script>
+    <script>
+        cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+
+        cornerstoneWADOImageLoader.configure({
+            beforeSend: function (xhr) {
+                // Add custom headers here (e.g. auth tokens)
+                xhr.setRequestHeader('APIKEY', 'my auth token');
+            }
+        });
+
+
+    </script>
+
+    <script src="../lib/corner/initializeWebWorkers.js"></script>
+    <script src="../js/dist/main.min.js?v=1.2"></script>
+    <script src="../config/exampleImageIdLoader.js"></script>
+    <script src="../js/dist/print.min.js?v=1.1"></script>
+    <!--jq-ui-->
+    <link href="../lib/jquery-ui/jquery-ui.css?v=1.0" rel="stylesheet">
+    <script src="../lib/jquery-ui/jquery-ui.js"></script>
+    <!--cropper-->
+    <link href="../lib/cropper/cropper.css?v=1.0" rel="stylesheet">
+    <script src="../lib/cropper/cropper.js"></script>
+    <!--join js start-->
+    <script src="../js/dist/join.min.js?v=1.1"></script>
+    <script src="../lib/js/device.min.js"></script>
+
+
+</head>
+<body class='drag-box drag-box-4' style="display: flex;
+                    justify-content: center;
+                    align-items: Center;" onload="initWebEngine()">
+<div id="dpi" style="width:1in;height:1in;position:absolute;left:0px;top:0px;z-index:99;visibility:hidden;"></div>
+
+<div id="container" class="main-container " style="  width: 100%;height:100%;overflow: hidden;">
+
+    <!--主图像操作区域与MPR功能区域-->
+    <div class="cointainer-box">
+        <div class="left-box">
+
+            <div class="thumbnail-box">
+                <div id="progressText"
+                     style=" background: #344153;    width: 100%;    text-align: center;    padding: 10px;    border-bottom: 1px solid #6d6666;">
+                    加载中...
+                </div>
+
+            </div>
+            <div class="measure-tool-box">
+
+            </div>
+        </div>
+        <div class="right-box">
+            <div class="main-engine-box mode-page" mode="viewer" style="position: relative">
+                <!--顶部工具栏-->
+                <div class="top-tool-box custom-location">
+                </div>
+                <!--图像查看操作区域-->
+                <div class="work-box viewer custom-location"></div>
+                <!--图像融合区域-->
+                <div class="fusion-box">
+                    <div class="fusion-srcs-box">
+                        <div class="src-box ct-box" id="ctBox">
+
+                        </div>
+                        <div class="src-box pet-box" id="petBox">
+
+                        </div>
+                    </div>
+                    <div class="fusion-result-box">
+
+                    </div>
+                </div>
+
+            </div>
+            <!--MPR工作区域-->
+            <div class="mpr-box mode-page" mode="mpr">
+
+                <div class="mpr-work-box">
+                    <!--MPR 顶部信息栏-->
+                    <div class="mpr-top-box">
+                        <div class="mpr-close-btn back-to-viewer">
+                            <i class="fa fa-reply" aria-hidden="true"></i>
+                        </div>
+                        <div class="mpr-info-box">
+                            <!--                    <div class="mpr-logo"><img src="../img/mpr/logo_mpr.png"/></div>-->
+                            <div class="mpr-info-item-box">
+                                <div class="mpr-text"><span>姓名：</span><span class="name">小小了</span></div>
+                                <!--     <div class="mpr-text"><span>性别：</span><span class="sex">男</span></div>
+                                     <div class="mpr-text"><span>年龄：</span><span class="age">58</span></div>-->
+                                <!--<div class="mpr-text"><span>检查日期：</span><span class="time">2015/05/09</span></div>-->
+
+                                <div class="mpr-text" style=" width: 150px; margin-right: 15px;"><span>日期：</span><span
+                                        class="sutdy-date">2018/08/09</span>
+                                    <span class="study-time" style="display: none;">12:52</span></div>
+
+
+                                <div class="mpr-text"><span>Value: </span><span
+                                        class="value location-text">1000</span></div>
+                                <div class="mpr-text"><span>Y: </span><span
+                                        class="posY location-text">222</span></div>
+                                <div class="mpr-text"><span>Z: </span><span
+                                        class="posZ location-text">222</span></div>
+                                <div class="mpr-text"><span>X: </span><span
+                                        class="posX location-text">222</span></div>
+                            </div>
+
+                            <div class="mpr-info-item-box" style="display: none">
+                                <div class="mpr-text"><span>Value: </span><span
+                                        class="value location-text">1000</span></div>
+                                <div class="mpr-text"><span>Y: </span><span
+                                        class="posY location-text">222</span></div>
+                                <div class="mpr-text"><span>Z: </span><span
+                                        class="posZ location-text">222</span></div>
+                                <div class="mpr-text"><span>X: </span><span
+                                        class="posX location-text">222</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--MPR 主要工作区域-->
+                    <div class="mpr-middle-box">
+                        <!--MPR 默认模式-->
+                        <div class="mpr-img-draw-box" style="z-index: 2;position: absolute;top: 0px;right: 0px;">
+                            <div class="papaya" data-params="params"></div>
+                        </div>
+                        <div class="mode-tool"
+                             style="width:100%;height:60px;position: absolute;bottom: 0;right: 0;line-height: 60px; z-index: 4; padding: 10px; ">
+                            <div class="web3D-render"
+                                 style="background:#118283;float:right; width: 40px;height: 40px;border-radius: 50%; line-height: 40px;">
+                                render
+                            </div>
+                            <div class="web3D-hide"
+                                 style="background:#118283;float:right; display:none;width: 40px;height: 40px;border-radius: 50%;line-height: 40px;">
+                                hide
+                            </div>
+                            <div class="web3D-show"
+                                 style="background:#118283;float:right;display:none;width: 40px;height: 40px;border-radius: 50%;line-height: 40px;">
+                                show
+                            </div>
+                        </div>
+                        <div class="web3D-box-test"
+                             style="width:100%;height:100%;position: absolute;top: 0px;right: 0px;background: blue;z-index: 1;"></div>
+
+
+                        <!--MPR 测绘模式-->
+                        <div class="mpr-wrapper-box">
+                            <div class="mpr-wrappers-container">
+                                <div class="mpr-left-box">
+                                    <div class="mpr-viewport-box mpr-axial-wrapper">
+                                        <div class="axialSliceOut  mpr-viewport active" data-slice-type="axialImg"
+                                             data-slice-position="mainImg">
+                                            <!--<canvas id="axialCanv"></canvas>-->
+                                        </div>
+                                        <div class="max" data-slice-type="axialImg"><img
+                                                src="../img/mpr/fullScreen.png"/></div>
+                                        <div class="mpr-save" title="保存图像"><img
+                                                src="../img/mpr/save.png"/></div>
+
+                                    </div>
+                                </div>
+                                <div class="mpr-right-box">
+
+                                    <div class="mpr-viewport-box mpr-sagittal-wrapper">
+                                        <div class="sagittalSliceOut mpr-viewport" data-slice-type="sagttialImg"
+                                             data-slice-position="lowerImageTop">
+                                            <!--<canvas id="sagittalCanv"></canvas>-->
+                                        </div>
+                                        <div class="max" data-slice-type="sagttialImg"><img
+                                                src="../img/mpr/fullScreen.png"/></div>
+
+                                    </div>
+                                    <div class="mpr-viewport-box mpr-cornoal-wrapper">
+                                        <div class="coronalSliceOut mpr-viewport" data-slice-type="coronalImg"
+                                             data-slice-position="lowerImageBot">
+                                            <!--<canvas id="coronalCanv"></canvas>-->
+                                        </div>
+                                        <div class="max" data-slice-type="coronalImg"><img
+                                                src="../img/mpr/fullScreen.png"/></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mpr-magnify-box" state="hide">
+                            <div class="min"><img src="../img/mpr/restore.png"/></div>
+                            <div class="mpr-magnify-viewport-wrapper">
+                                <div class="mpr-magnify-viewport"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="mpr-bottom-box">
+                        <!--MPR 默认功能-->
+                        <div class="mpr-tool-box">
+                            <!--  <div class="btn-box">
+                                  <div class="btn-tool resetBtn" id="back" title="模式切换">
+                                      <img src="../img/mpr/reset.png">
+                                  </div>
+                              </div>-->
+
+                            <div class="btn-box">
+                                <div class="swapBtn btn-tool" id="swap" title="窗口切换">
+                                    <img src="../img/mpr/swap.png">
+                                </div>
+                            </div>
+
+                            <div class="btn-box">
+                                <div class="originBtn btn-tool" id="origin" title="起点">
+                                    <img src="../img/mpr/origin.png">
+                                </div>
+                            </div>
+
+                            <div class="btn-box">
+                                <div class="centerBtn btn-tool" id="center" title="中心">
+                                    <img src="../img/mpr/center.png">
+                                </div>
+                            </div>
+
+
+                            <!--    <div class="btn-box">
+                                    <div class="mpr-save btn-tool" title="保存图像">
+                                        <img src="../img/mpr/save.png">
+                                    </div>
+                                </div>-->
+
+
+                            <div class="btn-box mpr-play-tool">
+                                <div class="slowBtn btn-tool mpr-play-tool" title="减速">
+                                    <img src="../img/mpr/slower.png">
+                                </div>
+                            </div>
+
+                            <div class="btn-box mpr-play-start">
+                                <div class="playBtn btn-tool" title="播放">
+                                    <img src="../img/mpr/play.png">
+                                </div>
+                            </div>
+
+
+                            <div class="btn-box mpr-play-tool">
+                                <div class="stopBtn btn-tool " title="停止">
+                                    <img src="../img/mpr/stop.png">
+                                </div>
+                            </div>
+
+
+                            <div class="btn-box mpr-play-tool">
+                                <div class="fastBtn btn-tool mpr-play-tool" title="加速">
+                                    <img src="../img/mpr/faster.png">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--胶片打印区域与图像拼接区域-->
+            <div class="print-join mode-page" mode="print">
+
+                <div class="print-join-box">
+
+                    <div class="print-box">
+                        <!--<div class="print-box-mask"><div>胶片打印中，请耐心等待</div><div><span>当前正在生成第</span><span class="film-index">1</span><span>页</span></div></div>-->
+                        <div class="print-work-box">
+                            <div class="print-title-box">胶片打印
+                                <!--<span>类型：</span><span class="cur-paper-type"></span>-->
+                                <!--<span>,方向（1 纵，0 横）：</span><span class="cur-paper-direction"></span>-->
+                            </div>
+                            <!--胶片盒子,用于做胶片的模板-->
+                            <div class="film-content-box">
+                                <div class="film-page-box" id="film-page-box">
+                                    <div class="film-page-box-mask"></div>
+                                    <!-- <div class="film-page-print-mask">
+                                         <img class="cur-film-img"  style="margin-top: 5px" src="../img/test/test.jpg">
+
+                                         </img>
+
+                                     </div>-->
+                                    <div id="page0" class="film-page film-page-check">
+                                    </div>
+                                </div>
+
+
+                                <div class="film-draw-temp-box" style="margin-top: 5px">
+                                    <!---->
+                                    <div class="atom-temp-box">
+
+                                    </div>
+                                    <div class="film-temp-box">
+
+                                    </div>
+
+
+                                    <div class="atom-draw-temp" id="atom-draw-temp" style="margin-top: 5px">
+                                        <!--<canvas id="atom-temp"></canvas>-->
+                                    </div>
+
+
+                                    <div class="film-draw-temp" style="margin-top: 5px">
+                                        <canvas id="film-temp"></canvas>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="print-control-box">
+                            <!--功能切换-->
+                            <div class="control-tool-box">
+                                <!--<button id="openJoin" class="btn pCurBtn font12 ">拼接</button>-->
+
+                                <div id="closePrint " class="back-to-viewer  back-in-print "
+                                     onclick="getModePage('viewer')">
+                                    <i class="fa fa-reply" aria-hidden="true" style="margin-top: -8px;"></i>
+                                </div>
+                            </div>
+
+                            <!--图标-->
+                            <div class="print-tool-box">
+                                <div class="set-box-title">图像</div>
+                                <li class="set-btn">
+                                    <i id="filmTagSet" title="胶片四角信息设置" class="fa fa-cog" aria-hidden="true"></i>
+                                </li>
+                                <br/>
+                                <!--选择项 操作对象切换-->
+                                <div class="radio-box print-proc-box" data-procType="img">
+
+
+                                    <div class="proc-radio" data-print-procType="img">
+                                        <input type="radio" id="procImg" class="radio print-proc-type" name="imgWay"
+                                               value="img" checked="checked"/>
+                                        <label for="img">图像(0)</label>
+                                    </div>
+                                    <div class="proc-radio" data-print-procType="series">
+                                        <input type="radio" id="procSeri" class="radio print-proc-type" name="imgWay"
+                                               value="series"/>
+                                        <label for="series">序列(0)</label>
+                                    </div>
+                                    <div class="proc-radio" data-print-procType="page">
+                                        <input type="radio" id="procPage" class="radio print-proc-type" name="imgWay"
+                                               value="page"/>
+                                        <label for="page">页(0)</label>
+                                    </div>
+                                    <div class="proc-radio" data-print-procType="all">
+                                        <input type="radio" id="procAll" class="radio print-proc-type" name="imgWay"
+                                               value="all"/>
+                                        <label for="all">所有(--)</label>
+                                    </div>
+
+
+                                </div>
+                                <!--强制换个行-->
+                                <br/>
+                                <div class="input-content font12">
+                                   <!-- <span>窗宽/窗位:</span><br>
+                                    <input id="printSetww" type="text"
+                                           onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
+                                           onblur="this.v();"/>
+                                    <input id="printSetwc" type="text"
+                                           onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
+                                           onblur="this.v();"/>
+                                    <select id="printSetwwwc">-->
+
+                                    <span>窗位/窗宽:</span>
+
+                                    <br>
+                                    <input id="printSetwc" type="text"
+                                           onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
+                                           onblur="this.v();"/>
+                                    <input id="printSetww" type="text"
+                                           onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
+                                           onblur="this.v();"/>
+
+
+                                        <!--<option>&#45;&#45;请选择&#45;&#45;</option>-->
+                                        <!--<option>1</option>-->
+                                        <!--<option>1</option>-->
+                                    </select>
+                                </div>
+                                <div class="tools-icon-box">
+                                    <!--     <li class="select" title="选择"></li>-->
+                                    <div class="icon-box">
+                                        <li id="printZoom" class="print-img-tool magnify btnStyle2" title="放大"
+                                            data-img="tool_zoom.bmp" data-print-toolType="zoom"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printMove" class="print-img-tool move btnStyle2" title="移动"
+                                            data-img="tool_move.bmp" data-print-toolType="pan"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printHflip" class="print-img-tool horizontal btnStyle1" title="水平镜像"
+                                            data-img="tool_hFlip.bmp" data-print-toolType="horizontal-flip"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printVflip" class="print-img-tool vertical btnStyle1" title="垂直镜像"
+                                            data-img="tool_vFlip.bmp" data-print-toolType="vertical-flip"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printRrotate" class="print-img-tool clockwise btnStyle1" title="顺时针旋转"
+                                            data-img="tool_rRotate.bmp" data-print-toolType="right-rotate"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printRotate" class="print-img-tool rotateMin btnStyle2" title="自由旋转"
+                                            data-img="tool_rotate.jpg" data-print-toolType="rotate"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printLrotate" class="print-img-tool anticlockwise btnStyle1"
+                                            title="逆时针旋转"
+                                            data-img="tool_lRotate.bmp" data-print-toolType="left-rotate"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li class="referLineHover" title="定位线">
+                                            <div id="printReferLine" class="btnStyle1" data-img="tool_posLine.jpg"
+                                                 style=" width: 100%; height: 100%; background-color: #6B6E84; ">
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printInvert" class="print-img-tool reverse btnStyle1" title="反色"
+                                            data-img="tool_inv.bmp" data-print-toolType="invert"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printWwwl" class="print-img-tool wwwl btnStyle2" title="窗位/窗宽"
+                                            data-img="tool_wl.bmp" data-print-toolType="wwwc"></li>
+                                    </div>
+
+                                    <div class="icon-box">
+                                        <li id="printReset" class="print-img-tool recover btnStyle1" title="恢复"
+                                            data-img="tool_reset.bmp" data-print-toolType="reset"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printFliter" class=" filter btnStyle1" data-img="tool_filter.jpg"
+                                            title="过滤"
+                                        >
+                                        </li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="openMeasure" class="btnStyle1" title="测量"
+                                            data-img="tool_ruler.bmp"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printJoin" class="btnStyle1" title="拼接裁剪" data-img="join.bmp">
+
+                                        </li>
+                                    </div>
+
+                                    <div class="icon-box">
+                                        <li id="printClip" class="btnStyle1 print-img-tool clipping"  data-print-toolType="clipping" title="裁剪" data-img="clip.bmp">
+
+                                        </li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printScale" class="btnStyle1" title="比例尺" data-img="scale.bmp">
+
+                                        </li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printDirect" class="closeMarker btnStyle1" title="方向标识" data-img="direct.bmp">
+
+                                        </li>
+                                    </div>
+                                    <div class="icon-box">
+                                        <li id="printDelete" class=" delete btnStyle1" title="删除"
+                                            data-img="tool_deleteimage.bmp"></li>
+                                    </div>
+                                    <div class="icon-box">
+                                    </div>
+                                    <div class="icon-box">
+                                    </div>
+                                </div>
+
+                                <div class="direction-label">
+                                    <li id="markL">L</li>
+                                    <li id="markR">R</li>
+                                    <li id="markA">A</li>
+                                    <li id="markH">H</li>
+
+
+                                </div>
+
+                                <!-- 打印-->
+                                <div class="print-set-box">
+                                    <div class="set-box-title">打印机</div>
+                                    <!--////////////////////////////1223456-->
+                                    <li class="set-btn">
+                                        <i id="printerSet" title="打印机设置" class="fa fa-cog" aria-hidden="true"></i>
+                                    </li>
+                                    <br/>
+                                    <select class="printBoxSelect" style="height: 25px;">
+
+                                        <option data-id="localPrinter" data-name="localPrinter" data-ip="localPrinter"
+                                                data-AET="localPrinter" data-AETLocal="localPrinter"
+                                                data-Port="localPrinter"
+                                                data-Position=" localPrinter" data-Type="localPrinter"
+                                                data-Priority="localPrinter" data-magnifyType="localPrinter"
+                                                data-Color="localPrinter">localPrinter
+                                        </option>
+
+                                    </select>
+                                    <div class="inputBox" style="display: none;">
+                                        <div class="inputContent font12">
+                                            份数：<input type="text" class="inputStyle shareNum " maxlength="2" value="1"
+                                                      onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
+                                                      onblur="this.v();"/>
+                                        </div>
+                                        <!--增减份数-->
+                                        <div class="btnAddNum"> +</div>
+                                        <div class="btnPlusNum"> -</div>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <!--胶片-->
+                                <div class="film-set-box"  style="    background: #fdf6f6;    color: black;    font-weight: bold;">
+                                    <div class="set-box-title"  style="color: black;">胶片</div>
+
+                                    <li class="set-btn">
+                                        <i id="filmSet" onclick=" setModeShow('filmType',true)" class="fa fa-cog"
+                                           aria-hidden="true"></i>
+                                    </li>
+                                    <br>
+                                    <div class="film-set-context">
+                                        <!--   打印方向：
+                                           <select class="paper-direction paper-set">
+                                               <option class="font12" selected="selected" value="1">纵向打印</option>
+                                               <option class="font12" value="0">横向打印</option>
+                                           </select>-->
+
+                                        <div>
+                                            <div class="paperType-title"> 类型：</div>
+                                            <div class="paper-type-box">
+                                                <div class="paper-type">
+                                                    <input type="radio" class="paper-type-radio  radio"
+                                                           name="paperType"
+                                                           value="8INX10IN" checked="checked"/>
+                                                    <label>8INX10IN</label>
+                                                </div>
+                                                <div class="paper-type">
+                                                    <input type="radio" class="paper-type-radio  radio"
+                                                           name="paperType"
+                                                           value="14INX17IN"/>
+                                                    <label>14INX17IN</label>
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <br>
+                                        <div style="    display: inline-flex;  line-height: 30px;">
+                                            <div class="direct-title" style="    display: inline-flex;  line-height: 30px;">
+                                                方向：
+                                            </div>
+                                            <div>
+                                                <div class="paper-direct">
+                                                    <input type="radio" class="paper-direct-radio  radio"
+                                                           name="direct"
+                                                           value=1 checked="checked"/>
+                                                    <label>纵向</label>
+                                                </div>
+                                                <div class="paper-direct">
+                                                    <input type="radio" class="paper-direct-radio  radio"
+                                                           name="direct"
+                                                           value=0 />
+                                                    <label>横向</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <br>
+                                        <div style="float:left;">
+                                            <div class="split-title"> 拆分：</div>
+                                            <div style=>
+                                                <input class="split-img" type="image" data-id="0"
+                                                       src="../img/print/0.png">
+                                                <input class="split-img" type="image" data-id="1"
+                                                       src="../img/print/1.png">
+                                                <input class="split-img" type="image" data-id="2"
+                                                       src="../img/print/5.png">
+                                                <input class="split-img" type="image" data-id="3"
+                                                       src="../img/print/2.png">
+                                                <input class="split-img" type="image" data-id="4"
+                                                       src="../img/print/6.png">
+                                            </div>
+                                        </div>
+
+
+
+                                        <br>
+                                        <!--   纸张大小：
+                                           <select class="paper-type paper-set">
+                                               <option value="8INX10IN">8INX10IN</option>
+                                               <option value="8_5INX11IN">8_5INX11IN</option>
+                                               <option value="10INX12IN">10INX12IN</option>
+                                               <option value="10INX14IN">10INX14IN</option>
+                                               <option value="11INX14IN">11INX14IN</option>
+                                               <option value="11INX17IN">11INX17IN</option>
+                                               <option value="14INX14IN">14INX14IN</option>
+                                               &lt;!&ndash;<option selected="">14INX17IN</option>&ndash;&gt;
+                                               &lt;!&ndash;<option value="14INX17IN" selected = "selected" >14INX17IN</option>&ndash;&gt;
+                                               <option value="14INX17IN" selected="selected">14INX17IN</option>
+                                               <option value="24CMX24CM">24CMX24CM</option>
+                                               <option value="24CMX30CM">24CMX30CM</option>
+                                               <option value="A5">A5</option>
+                                               <option value="A4">A4</option>
+                                               <option value="A3">A3</option>
+                                           </select>
+       -->
+
+
+                                        <div >
+                                            <div class="layout-title"> 布局：</div>
+                                            <div style=>
+                                                <input class="layout-img" type="image" name="layout" value="1*1"
+                                                       src="../img/print/0.png">
+                                                <input class="layout-img" type="image" name="layout" value="2*1"
+                                                       src="../img/print/1.png">
+                                                <input class="layout-img" type="image" name="layout" value="1*2"
+                                                       src="../img/print/5.png">
+                                                <input class="layout-img" type="image" name="layout" value="2*2"
+                                                       src="../img/print/3.png">
+
+                                                <input class="layout-img-more"    type="image"  title="更多"
+                                                       src="../img/print/more.png" onclick="setModeShow('layout',true)">
+                                                <div class="layout-custom">
+
+                                                    <label>自定义行列</label>
+                                                    <span class="inputBox">
+
+                                                    <input type="text" name="layout-rows" maxlength="2"
+                                                           class="customInput"
+                                                           onkeyup="mask(this)" value="1" onbeforepaste="mask_c()">
+                                                    *<input type="text" name="layout-cols" maxlength="2"
+                                                            class="customInput"
+                                                            onkeyup="mask(this)" value="1" onbeforepaste="mask_c()">
+            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="page-toolbar">
+                                        <i data-page-chage-type="first" class="film-page-chage fa fa-step-backward"
+                                           aria-hidden="true"></i>
+                                        <i data-page-chage-type="prev" class="film-page-chage fa fa-caret-left"
+                                           aria-hidden="true"></i>
+                                        <input class="cur-film-page font12" type="text" value="1">/<span
+                                            class="total-film-page font12">1</span>
+                                        <i data-page-chage-type="next" class="film-page-chage fa fa-caret-right"
+                                           aria-hidden="true"></i>
+                                        <i data-page-chage-type="last" class="film-page-chage fa fa-step-forward"
+                                           aria-hidden="true"></i>
+                                        <i id="addPage" class=" fa fa-plus" aria-hidden="true"></i>
+                                        <i id="deletePage" class="fa fa-trash-o" aria-hidden="true"
+                                           onclick="deleteFilmPage()"></i>
+                                    </div>
+
+
+                                    <div id="localPrintCur" class=" local-option left-option    btnBig"
+                                         style="width: 100%!important;">打印胶片
+                                    </div>
+
+                                    <div id="remotePrint" class=" server-option left-option   btnBig">立即打印</div>
+                                    <div id="remoteSave" class=" server-option right-option   btnBig">保存排版</div>
+
+
+                                </div>
+
+
+                                <div class="demo-tool-box" style="display: none">
+                                    <div class="demo-tool close-film-img">close</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="join-box">
+                        <div class="join-middle-box">
+                            <div class="join-title-box">
+                                拼接页面
+                                <!--<div class="back-to-print">返回打印</div>-->
+                            </div>
+                            <div class="join-work-box">
+                                <!--拼接功能盒子-->
+                                <div class="join-cut-box">
+                                    <div class="join-cointainer-box">
+
+                                        <!--图像拼接工作区-->
+                                        <div class="join-img-box ui-widget-content " id="joinImgBox">
+
+                                            <!--<div class="join-img draggable ui-widget-content">假装我是等待拼接的图像1</div>-->
+                                            <!--
+                                                                        <div class="join-img draggable ui-widget-content" style="position: absolute;top: 100px;left: 100px;">假装我是等待拼接的图像2</div>-->
+
+
+                                        </div>
+                                    </div>
+
+                                    <!--图像裁剪工作区 -->
+                                    <div class="cut-img-box">
+                                        <!--裁剪图像容器-->
+                                        <div class="cut-box img-container">
+                                            <!--需要进行裁剪的内容绘制区域-->
+                                            <canvas id="cutCanv" class="cutWorkArea "
+                                                    style="width: 100%;height: 100%;"></canvas>
+                                        </div>
+                                        <div class="row" style="display:none;">
+                                            <div class="col-md-9">
+                                                <!-- <h3 class="page-header">Demo:</h3> -->
+                                                <!-- <div class="img-container">
+                                                     <img src="assets/img/picture.jpg" alt="Picture">
+                                                 </div>-->
+                                            </div>
+                                            <div class="col-md-3">
+                                                <!--裁剪结果预览，包含几种size-->
+                                                <div class="docs-preview clearfix">
+                                                    <div class="img-preview preview-lg"></div>
+                                                    <div class="img-preview preview-md"></div>
+                                                    <div class="img-preview preview-sm"></div>
+                                                    <div class="img-preview preview-xs"></div>
+                                                </div>
+
+                                                <!-- <h3 class="page-header">Data:</h3> -->
+                                                <div class="docs-data">
+                                                    <!--裁剪坐标-X-->
+                                                    <div class="input-group">
+                                                        <label class="input-group-addon" for="dataX">X</label>
+                                                        <input class="form-control" id="dataX" type="text"
+                                                               placeholder="x">
+                                                        <span class="input-group-addon">px</span>
+                                                    </div>
+                                                    <!--裁剪坐标-Y-->
+                                                    <div class="input-group">
+                                                        <label class="input-group-addon" for="dataY">Y</label>
+                                                        <input class="form-control" id="dataY" type="text"
+                                                               placeholder="y">
+                                                        <span class="input-group-addon">px</span>
+                                                    </div>
+                                                    <!--裁剪-宽度-->
+                                                    <div class="input-group">
+                                                        <label class="input-group-addon" for="dataWidth">Width</label>
+                                                        <input class="form-control" id="dataWidth" type="text"
+                                                               placeholder="width">
+                                                        <span class="input-group-addon">px</span>
+                                                    </div>
+                                                    <!--裁剪-高度-->
+                                                    <div class="input-group">
+                                                        <label class="input-group-addon" for="dataHeight">Height</label>
+                                                        <input class="form-control" id="dataHeight" type="text"
+                                                               placeholder="height">
+                                                        <span class="input-group-addon">px</span>
+                                                    </div>
+                                                    <!--裁剪-旋转角度-->
+                                                    <div class="input-group">
+                                                        <label class="input-group-addon" for="dataRotate">Rotate</label>
+                                                        <input class="form-control" id="dataRotate" type="text"
+                                                               placeholder="rotate">
+                                                        <span class="input-group-addon">deg</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--裁剪预览盒子-->
+                                    <div class="cut-scan-box">
+                                        <div class="join-scan" id="joinPreview">
+                                            <!--绘制裁剪结果的预览图像-->
+                                            <canvas id="cutScanCanv"></canvas>
+                                        </div>
+
+
+                                        <!--<div class="join-scan" id="joinPreview"></div>-->
+
+
+                                        <img id="jionScan">
+                                        <div class="joinPreview" style="display: none;">
+                                            <canvas id="saveTest1"></canvas>
+                                        </div>
+                                    </div>
+
+                                    <!--裁剪辅助功能-custom-->
+                                    <div>
+                                        <div class="   cut_reset" data-method="reset" title="Reset"
+                                             style="display: none;">
+            <span class="docs-tooltip" data-toggle="tooltip">
+               reset
+            </span>
+                                        </div>
+                                        <div class="   cut_destory" data-method="destroy" title="Destroy"
+                                             style="display: none;">
+            <span class="docs-tooltip" data-toggle="tooltip">
+              destory
+            </span>
+                                        </div>
+
+
+                                        <!-- Show the cropped image in modal -->
+                                        <!--裁剪区域的canvas预览-->
+                                        <div class="modal fade docs-cropped" id="getCroppedCanvasModal"
+                                             style="display: none">
+                                            <div
+                                                    aria-hidden="true"
+                                                    aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1"
+                                                    style="width: 100%;height: 100%; display: flex;
+    justify-content: center;
+    align-items: center;">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content" style="background-color: #5e5e5e">
+                                                        <div class="modal-header">
+                                                            <button class="close" data-dismiss="modal" type="button"
+                                                                    aria-hidden="true">
+                                                                &times;
+                                                            </button>
+                                                            <h4 class="modal-title" id="getCroppedCanvasTitle">
+                                                                裁剪结果预览</h4>
+                                                        </div>
+                                                        <div class="modal-body" style="display: flex;
+    justify-content: center;
+    align-items: center;"></div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-primary" data-dismiss="modal"
+                                                                    type="button">Close
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                                <!--绘制拼接图像的中间div-->
+                                <div class="joinHelpBox">
+                                    <div class="joinOutputCanvBox">
+                                        <canvas id="joinOutputCanv"></canvas>
+                                        <canvas id="joinResultCanv"></canvas>
+                                    </div>
+                                    <div class="joinOutPutBox" style="position: absolute; left: 10000px;top: 10000px">
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="join-tool-box">
+                            <div class="back-to-print back-to-viewer" title="返回打印">
+                                <i class="fa fa-reply" aria-hidden="true"></i>
+                            </div>
+                            <div class="join-cut-tool-box">
+
+
+                                <div class="tool-join tool-group">
+                                    <div class="cut-tool   join-sendToPrint" title="打印" style="display: none;">
+                                        <img src="../img/print/join_print.png">
+                                    </div>
+                                    <div class="cut-tool   join-cutBox" title="裁剪">
+                                        <img src="../img/print/join_cut.png">
+                                    </div>
+                                    <div class="cut-tool     join-save" title="保存">
+
+                                        <img src="../img/print/join_save.png">
+                                    </div>
+                                </div>
+
+                                <div class="tool-cut tool-group">
+                                    <div class="cut-tool     join-back" title="返回">
+                                        <img src="../img/print/join_return.png">
+                                    </div>
+
+
+                                    <div class="btn btn-primary" data-method="getCroppedCanvas" title="预览">
+                                        预览
+                                    </div>
+
+                                    <div class="cut-tool   join-cutSure" title="确认">
+                                        <img src="../img/print/join_ok.png">
+                                    </div>
+
+
+                                </div>
+
+                                <div class="tool-scan tool-group">
+                                    <div class="cut-tool     cut-save" title="保存">
+                                        <img src="../img/print/join_save.png">
+                                    </div>
+
+                                    <div class="cut-tool   cut-sendToPrint" title="打印" style="display: none;">
+
+                                        <img src="../img/print/join_print.png">
+                                    </div>
+
+                                    <div class="cut-tool   join-undo" title="撤销">
+                                        <img src="../img/print/join_cancel.png">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!--web3D-->
+            <div class="web3D-box mode-page" mode="web3D">
+                <div class="web3D-top-box">
+                    <div class="web3D-close-btn back-to-viewer">
+                        <i class="fa fa-reply" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="web3D-container">
+
+                </div>
+            </div>
+
+        </div>
+        <!--        补打提示-->
+        <div class="print-record" title="胶片补打"
+             style="z-index: 2; position:absolute;  width: 50px;height: 50px;padding: 10px">
+            <div  class="btn-icon"  > 补</div>
+
+        </div>
+        <!--        图像加载异常提示-->
+        <div class="load-alert"
+             style="z-index: 2;display:none;position:absolute;bottom:10px;right:10px;width: 50px;height: 50px;padding: 10px">
+            <img src="../img/alert.png" style="height: 30px;width: auto;">
+        </div>
+        <div class="load-tips-box">
+            <div class="close-load-tips">
+                <img src="../img/common/close.png" style="height: 18px;width: auto;">
+            </div>
+            <div class=" load-tip-box locked-box">
+                <div class="classify">归档资源:</div>
+                <div class="item-box">
+                </div>
+
+            </div>
+            <div class=" load-tip-box not-exit-box">
+                <div class="classify">异常资源:</div>
+                <div class="item-box">
+                </div>
+
+            </div>
+            <!-- <div class=" load-tip-box cross-origin-box">
+                 <div  class="classify">访问出错:</div>
+                 <div class="item-box">
+                 </div>
+             </div>-->
+            <div class=" load-tip-box cross-origin-box">
+                <div class="classify">访问出错:
+                    <div class="load-again"
+                         style="cursor: pointer; color:#8ac9ec;   display: inline;    width: fit-content;     margin-left: 27px;">
+                        重新加载
+                    </div>
+                </div>
+                <div class="item-box">
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!--公用遮罩层-->
+    <div class="common-mask"></div>
+    <!--弹出框-->
+    <div class="common-pop-up-box">
+        <div style="  display: flex;justify-content: center; align-items: center;width: 100%;height: 100%">
+            <!--公用设置-->
+            <div class="set-mode engine-sets-box " set-mode="sets">
+                <div class="topbar">
+                    <div class="set-title"><span>自定义设置弹框</span></div>
+                    <div class="close" onclick="setModeShow('sets',false)"><img src="../img/common/close.png"></div>
+                </div>
+                <div class="set-box">
+                    <div class="item-set-box" data-id="top">
+                        <div class="item-classify"><span>工具栏位置：</span></div>
+                        <div class="item-box ">
+                            <div class="item"><span>顶部:</span><input type="radio" name="toolsLocation" value="top">
+                            </div>
+                            <div class="item"><span>底部:</span><input type="radio" name="toolsLocation" value="bottom">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-set-box" data-id="tagSet">
+                        <div class="item-classify"><span style="float: left">标签信息设置：</span>
+                            <div class="set-btn" onclick=" setModeShow('tag-set', true);
+            tagShow();">
+                                <div class="  icon icon-edit"></div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!--查看全局对象-->
+                    <!--    <div class='tool_btn js-checkData ' title="查看全局对象">
+                            <div class='btn'>
+                                <div class="icon ">global</div>
+                            </div>
+                        </div>-->
+                </div>
+                <div class="selec-branch-box">
+                    <div class="public-set">
+                        <div class="yes public-set-sure">确定</div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="set-mode engine-sets-box " set-mode="sets">
+                 <div class="topbar">
+                     <div class="set-title"><span>自定义设置弹框</span></div>
+                     <div class="close" onclick="setModeShow('sets',false)"><img src="../img/common/close.png"></div>
+                 </div>
+                 <div class="set-box">
+                     <div data-id="top">
+                         <div class="item-classify"><span>工具栏位置：</span></div>
+                         <div class="item-box ">
+                             <div class="item"><span>顶部:</span><input type="radio" name="toolsLocation" value="top">
+                             </div>
+                             <div class="item"><span>底部:</span><input type="radio" name="toolsLocation" value="bottom">
+                             </div>
+                         </div>
+                     </div>
+
+                     &lt;!&ndash;查看全局对象&ndash;&gt;
+                     &lt;!&ndash;    <div class='tool_btn js-checkData ' title="查看全局对象">
+                             <div class='btn'>
+                                 <div class="icon ">global</div>
+                             </div>
+                         </div>&ndash;&gt;
+                 </div>
+                 <div class="selec-branch-box">
+                     <div class="public-set">
+                         <div class="yes public-set-sure">确定</div>
+                     </div>
+                 </div>
+             </div>-->
+            <!--常用胶片尺寸设置-->
+            <div class="set-mode film-typeSet-box " set-mode="filmType">
+                <div class="topbar">
+                    <div class="set-title"><span>常用胶片尺寸设置</span></div>
+                    <div class="close" onclick="setModeShow('filmType',false)"><img src="../img/common/close.png"></div>
+                </div>
+                <div class="film-select-box">
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=A5
+                        /><label
+                    >A5</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=A4 /><label
+                    >A4</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=A3 /><label
+                    >A3</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=8INX10IN checked/><label
+                    >8INX10IN</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=8_5INX11IN /><label
+                    >8_5INX11IN</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=10INX12IN /><label
+                    >10INX12IN</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=10INX14IN /><label
+                    >10INX14IN</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=11INX14IN /><label
+                    >11INX14IN</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=11INX17IN /><label
+                    >11INX17IN</label>
+                    </li>
+
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=14INX14IN /><label
+                    >14INX14IN</label>
+                    </li>
+                    <Li>
+                        <input type="checkbox" name="filmTypeRadio" value=14INX17IN checked/><label
+                    >14INX17IN</label>
+                    </Li>
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=24CMX24CM /><label
+                    >24CMX24CM</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="filmTypeRadio" value=24CMX30CM /><label
+                    >24CMX30CM</label>
+                    </li>
+
+                </div>
+                <div class="selec-branch-box">
+                    <div class="layout-result">
+                        <div class="yes" id="saveFilmSet">确定</div>
+                        <div class="cancle" id="cancleSet" onclick="setModeShow('filmType',false)">取消</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--布局弹出框-->
+            <div class="set-mode film-layout-box " set-mode="layout">
+                <div class="topbar">
+                    <div class="set-title"><span>胶片布局</span></div>
+                    <div class="close" onclick="setModeShow('layout',false)"><img src="../img/common/close.png"></div>
+                </div>
+                <div class="layout-select-box">
+                   <!-- <li>
+                        <input type="radio" id="layoutRadio1" name="layoutRadio" value="1*1"
+                               checked/><label
+                            for="layoutRadio1">1(1X1)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio2" value="2*1"/><label
+                            for="layoutRadio2">2(2X1)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio3" value="1*2"/><label
+                            for="layoutRadio3">2(1X2)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio"   id="layoutRadio4" value="2*2"/><label
+                            for="layoutRadio4">4(2X2)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio5" value="2*3"/><label
+                            for="layoutRadio5">6(2X3)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio6" value="3*3"/><label
+                            for="layoutRadio6">9(3X3)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio7" value="3*4"/><label
+                            for="layoutRadio7">12(3X4)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio8" value="4*4"/><label
+                            for="layoutRadio8">16(4X4)</label>
+                    </li>
+
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio9" value="4*5"/><label
+                            for="layoutRadio9">20(4X5)</label>
+                    </li>
+
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio10" value="4*6"/><label
+                            for="layoutRadio10">24(4X6)</label>
+                    </li>
+                    <Li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio11" value="5*5"/><label
+                            for="layoutRadio11">25(5X5)</label>
+                    </Li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio12" value="5*6"/><label
+                            for="layoutRadio12">30(5X6)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio13" value="5*7"/><label
+                            for="layoutRadio13">35(5X7)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio14" value="6*6"/><label
+                            for="layoutRadio14">36(6X6)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio15" value="6*9"/><label
+                            for="layoutRadio15">42(6X7)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio16" value="6*8"/><label
+                            for="layoutRadio16">48(6X8)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio17" value="7*7"/><label
+                            for="layoutRadio17">49(7X7)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio18" value="7*8"/><label
+                            for="layoutRadio18">56(7X8)</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="layoutRadio" id="layoutRadio19" value="7*9"/><label
+                            for="layoutRadio19">63(7X9)</label>
+                    </li>
+-->
+
+                    <!-- <li style="width: 100%;">
+                         <input type="radio" name="layoutRadio" id="layoutRadio20" class="specialRadio" data-row="6"
+                                data-col="8"/><label for="layoutRadio20"> 自定义行：
+                         <select class="select-row">
+                             <option>1</option>
+                             <option>2</option>
+                             <option>3</option>
+                             <option>4</option>
+                             <option>5</option>
+                             <option>6</option>
+                             <option>7</option>
+                             <option>8</option>
+                             <option>9</option>
+                             <option>10</option>
+                         </select>
+                         自定义列：
+                         <select class="select-col">
+                             <option>1</option>
+                             <option>2</option>
+                             <option>3</option>
+                             <option>4</option>
+                             <option>5</option>
+                             <option>6</option>
+                             <option>7</option>
+                             <option>8</option>
+                             <option>9</option>
+                             <option>10</option>
+                         </select></label>
+                     </li>-->
+                </div>
+                <div class="selec-branch-box">
+                    <div class="layout-result">
+                        <div class="yes" id="layoutBtn">确定</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--jpg图像查看框-->
+            <div class="set-mode jpg-view-box" set-mode="jpg-view">
+                <div class="topbar">
+                    <div class="set-title"><span>jpg浏览</span></div>
+                    <div class="close" onclick="setModeShow('jpg-view',false )"><img src="../img/common/close.png">
+                    </div>
+                </div>
+                <div class="jpg-info-box">
+                    <span class="item"><span>姓名: </span><span class="name">liulliuol</span></span>
+                    <span class="item"><span>检查时间: </span><span class="date">2019-01-18 10:48:47.0</span></span>
+                </div>
+                <div class="ceilBox">
+                    <img class="jpg-item">
+                    <div class="download-single-jpg" style="display: none;"><i class="fa fa-download"
+                                                                               aria-hidden="true"></i></div>
+
+                </div>
+                <div class="jpg-scan-box">
+                    <div class="scan-box">
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                        <div class="jpg-box"><img></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--窗位窗宽弹出框-->
+            <div class="set-mode wwwc-box" set-mode="wwwc">
+                <div class="topbar">
+                    <div class="set-title"><span>快捷调窗列表</span></div>
+                    <div class="close" onclick="setModeShow('wwwc',false )"><img src="../img/common/close.png"></div>
+                </div>
+                <div class="device-box">
+                    <span>  设备：</span>
+                    <select name="device" class="device">
+                        <option>CT</option>
+                        <option>CR</option>
+                        <option>DX</option>
+                        <option>MR</option>
+                        <option>XA</option>
+                        <option>RF</option>
+                        <option>MG</option>
+                        <option>NM</option>
+                        <option>PT</option>
+                    </select>
+                </div>
+                <div class="ceilBox">
+                    <div class="tableOne">
+                        <div class="table1Box">
+                            <table class="table1-1">
+                                <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>窗位</th>
+                                    <th>窗宽</th>
+                                    <th>快捷键</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="table2Box">
+                            <table class="table1">
+                                <tbody class="table1Body" style="height: 200px;">
+
+                                </tbody>
+                            </table>
+                            <table class="table2">
+                                <tbody class="table2Body">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="selec-branch-box">
+                    <div>
+                        <div class="yes" id="addwwwc">添加</div>
+                        <div class="yes" id="modifywwwc">修改</div>
+                        <div class="yes" id="delewwwc">删除</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--窗位窗宽设置弹出框-->
+            <div class="set-mode-second wwwc-set-box" set-mode="wwwc-set">
+                <div class="topbar">
+                    <div class="set-title"><span>快捷调窗设置</span></div>
+                    <div class="close" onclick="setModeSecondShow('',false,'');setModeShow('wwwc',true );"><img
+                            src="../img/common/close.png">
+                    </div>
+                </div>
+                <div class="ceilBox">
+                    <div class="device-name-box">
+                        <div class="device-box">
+                            <span>设备：</span>
+                            <select name="device" class="device1">
+                                <option>CT</option>
+                                <option>CR</option>
+                                <option>DX</option>
+                                <option>MR</option>
+                                <option>XA</option>
+                                <option>RF</option>
+                                <option>MG</option>
+                                <option>NM</option>
+                                <option>PT</option>
+                            </select>
+                        </div>
+                        <div class="name-box">
+                            <span> 名称：</span>
+                            <input type="text" class="modifyName"/>
+                        </div>
+                    </div>
+                    <div class="inputBox">
+                        <div class="inputContent">
+                            窗位：<input type="text" class="inputStyle wcInput"
+                                      onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
+                                      onblur="this.v();"/>
+                        </div>
+                        <div class="inputBtnBox">
+                            <div class="inputBtn   wcBtnAdd "><img src="../img/common/add.png"></div>
+                            <div class="inputBtn   wcBtnReduce"><img src="../img/common/minus.png"></div>
+                        </div>
+                    </div>
+                    <div class="inputBox">
+                        <div class="inputContent">
+                            窗宽：<input type="text" class="inputStyle wwInput"
+                                      onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
+                                      onblur="this.v();"/>
+                        </div>
+                        <div class="inputBtnBox">
+                            <div class="inputBtn   wwBtnAdd "><img src="../img/common/add.png"></div>
+                            <div class="inputBtn   wwBtnReduce"><img src="../img/common/minus.png"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="selec-branch-box">
+                    <div>
+                        <div class="yes add-wwwc">确定</div>
+                        <div class="yes modify-wwwc" style="display: none">确定</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--胶片打印页面过滤弹出框-->
+            <div class="set-mode filter-box" set-mode="filter">
+                <div class="topbar">
+                    <div class="set-title"><span>图像过滤</span></div>
+                    <div class="close" onclick="setModeShow('filter',false )"><img src="../img/common/close.png"></div>
+                </div>
+                <div class="ceilBox">
+                    <div class="ceilBoxDiv">共有<span id="filterTotal">num</span>幅图像，InstanceNumber：1-<span
+                            id="filterEndIndex">num</span>
+                    </div>
+                    <div class="ceilBoxDiv">InstanceNumber起始：<input id="beginIndex" type="text"/></div>
+                    <div class="ceilBoxDiv">InstanceNumber截止：<input id="endIndex" type="text"/></div>
+                    <div class="ceilBoxDiv">InstanceNumber隔：<input id="interval" type="text" style="width: 50px;"/>个图像取一个
+                    </div>
+                </div>
+                <div class="selec-branch-box">
+                    <div>
+                        <div class="yes" id="filterOk">确定</div>
+                        <div class="yes" onclick="setModeShow('filter',false )">取消</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--打印确认窗口-local-->
+            <div class="set-mode print-local-verify-box" set-mode="print-local-verify">
+                <div class="topbar">
+                    <div class="set-title"><span>打印信息</span></div>
+                    <div class="close" onclick="setModeShow('print-local-verify',false )"><img
+                            src="../img/common/close.png">
+                    </div>
+                </div>
+
+                <div class="ceilBox">
+                    <div class="info-item"><span class="item-name">打印机名称:<i></i></span> <span
+                            class="item-value verify-name">1111111111</span></div>
+                    <div class="info-item"><span class="item-name">打印服务类型:<i></i></span> <span
+                            class="item-value verify-printer-type">1111111111</span></div>
+                    <div class="info-item  printer-state-item"><span class="item-name">打印机状态:<i></i></span> <span
+                            class="item-value verify-printer-state">未连接</span>
+                        <div class="item-update">刷新</div>
+                        <div class="item-retry">重试</div>
+                    </div>
+                    <div class="info-item"><span class="item-name">纸张类型:<i></i></span><span
+                            class="item-value verify-paper-type">1111111111</span></div>
+                    <div class="info-item"><span class="item-name">纸张方向:<i></i></span> <span
+                            class="item-value verify-paper-direct">1111111111</span></div>
+                    <div class="info-item"><span class="item-name">布局:<i></i></span><span
+                            class="item-value verify-layout">1111111111</span></div>
+                    <div class="info-item"><span class="item-name">打印四角信息:<i></i></span>
+                        <span class="item-value verify-print-info"> <input type="checkbox" name="printInfoShow"
+                                                                           checked/></span></div>
+                    <div class="info-item" style="display: none;"><span class="item-name">打印对象:<i></i></span><span
+                            class="item-value verify-print-obj">1111111111</span></div>
+                    <div class="info-item"><span class="item-name">对象:<i></i></span>
+                        <div class="radio-box    verify-film-obj" data-obj="cur">
+
+
+                            <div class="obj-radio-item" data-print-filmObj="cur">
+
+                                <input type="radio" class="obj-radio" name="way1"
+                                       data-value="cur" checked/>
+                                <div class="obj-name">当前</div>
+
+                            </div>
+                            <div class="obj-radio-item" data-print-filmObj="all">
+
+                                <input type="radio" class="obj-radio" name="way1"
+                                       data-value="all"/>
+
+                                <div class="obj-name">全部</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="info-item"><span class="item-name">打印总页数:<i></i></span> <span
+                            class="item-value verify-print-pages">1111111111</span></div>
+
+                </div>
+
+
+                <div class="selec-branch-box">
+                    <div>
+                        <div class="yes" id="printLocalSure" onclick="setModeShow('print-local-verify',false )">确认</div>
+                        <div class="yes" id="printLocalCancle" onclick="setModeShow('print-local-verify',false )">取消
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--打印确认窗口-server-->
+            <div class="set-mode print-server-verify-box" set-mode="print-server-verify">
+                <div class="topbar">
+                    <div class="set-title"><span>打印信息</span></div>
+                    <div class="close" onclick="setModeShow('print-server-verify',false )"><img
+                            src="../img/common/close.png">
+                    </div>
+                </div>
+
+                <div class="ceilBox">
+                    <div class="info-item"><span class="item-name">打印机名称:<i></i></span> <span
+                            class="item-value verify-name">1111111111</span></div>
+                    <div class="info-item"><span class="item-name">打印服务类型:<i></i></span> <span
+                            class="item-value verify-printer-type">1111111111</span></div>
+                    <!-- <div class="info-item"><span class="item-name">打印机状态:<i></i></span> <span class="item-value verify-printer-state">1111111111</span></div>-->
+                    <div class="info-item"><span class="item-name">纸张类型:<i></i></span><span
+                            class="item-value verify-paper-type">1111111111</span></div>
+                    <div class="info-item"><span class="item-name">纸张方向:<i></i></span> <span
+                            class="item-value verify-paper-direct">1111111111</span></div>
+                    <div class="info-item"><span class="item-name">布局:<i></i></span><span
+                            class="item-value verify-layout">1111111111</span></div>
+                    <div class="info-item"><span class="item-name">对象:<i></i></span>
+                        <div class="radio-box    verify-film-obj" data-obj="cur">
+
+
+                            <div class="obj-radio-item" data-print-filmObj="cur">
+
+                                <input type="radio" class="obj-radio  " name="way"
+                                       value="cur" checked="checked"/>
+                                <div class="obj-name">当前</div>
+
+                            </div>
+                            <div class="obj-radio-item" data-print-filmObj="all">
+
+                                <input type="radio" class="obj-radio  " name="way"
+                                       value="all"/>
+                                <div class="obj-name">全部</div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="info-item"><span class="item-name">操作总页数:<i></i></span> <span
+                            class="item-value verify-print-pages">1111111111</span></div>
+
+                </div>
+
+
+                <div class="selec-branch-box">
+                    <div>
+                        <div class="yes" id="printServerSure" onclick="setModeShow('print-server-verify',false )">确认
+                        </div>
+                        <div class="yes" id="printServerCancle" onclick="setModeShow('print-server-verify',false )">取消
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <!--打印机列表 打印机增删改-->
+            <div class="set-mode printer-list-box" set-mode="printer-list">
+                <div class="topbar">
+                    <div class="set-title"><span>打印机列表</span></div>
+                    <div class="close" onclick="setModeShow('printer-list',false )"><img src="../img/common/close.png">
+                    </div>
+                </div>
+                <div class="ceilBox">
+                    <div class="leftBox">
+                        <ul class="temp"></ul>
+                    </div>
+                </div>
+                <div class="selec-branch-box">
+                    <div>
+                        <div class="yes" id="addPrinter">添加</div>
+                        <div class="yes" id="modifyPrinter">修改</div>
+                        <div class="yes" id="delePrinter">删除</div>
+                    </div>
+                </div>
+            </div>
+            <!--打印机设置弹出框-->
+            <div class="set-mode-second printer-set-box" set-mode="printer-set">
+                <div class="topbar">
+                    <div class="set-title"><span>打印机设置</span></div>
+                    <div class="close printCloseBtn"
+                         onclick="setModeSecondShow('printer-set',false,'');setModeShow('printer-list',true );"><img
+                            src="../img/common/close.png"></div>
+                </div>
+                <!-- <div class="ceilBox">
+                     <div class="title">目标打印机设置</div>
+                     <div class="printer-name-box">
+                         <span>打印机名称：</span> <input type="text" name="name"/>
+                     </div>
+                     <div class="printer-param-box">
+                         <div class="param-box">
+                             <div class="param-item">
+                                 <div class="title"> IP：</div>
+                                 <span class="inputBox">
+                 <input type=text name=ip1 maxlength=3 class="ipInput  param" onkeyup="mask(this)" value="127"
+                        onbeforepaste=mask_c()>.<input type=text name=ip2 maxlength=3 class=ipInput onkeyup="mask(this)"
+                                                       value="0" onbeforepaste=mask_c()>.<input type=text name=ip3
+                                                                                                maxlength=3
+                                                                                                class="ipInput"
+                                                                                                onkeyup="mask(this)"
+                                                                                                value="0"
+                                                                                                onbeforepaste=mask_c()>.<input
+                                         type=text name=ip4 maxlength=3 class="ipInput" onkeyup="mask(this)" value="1"
+                                         onbeforepaste=mask_c()>
+             </span>
+                                 <script>
+                                     function mask(obj) {
+                                         obj.value = obj.value.replace(/[^\d]/g, '')
+                                         key1 = event.keyCode
+                                         if (key1 == 37 || key1 == 39) {
+                                             obj.blur();
+                                             nextip = parseInt(obj.name.substr(2, 1))
+                                             nextip = key1 == 37 ? nextip - 1 : nextip + 1;
+                                             nextip = nextip >= 5 ? 1 : nextip
+                                             nextip = nextip <= 0 ? 4 : nextip
+                                             eval("ip" + nextip + ".focus()")
+                                         }
+                                         if (obj.value.length >= 3)
+                                             if (parseInt(obj.value) >= 256 || parseInt(obj.value) <= 0) {
+                                                 alert(parseInt(obj.value) + "IP地址错误！")
+                                                 obj.value = ""
+                                                 obj.focus()
+                                                 return false;
+                                             }
+                                             else {
+                                                 obj.blur();
+                                                 nextip = parseInt(obj.name.substr(2, 1)) + 1
+                                                 nextip = nextip >= 5 ? 1 : nextip
+                                                 nextip = nextip <= 0 ? 4 : nextip
+                                                 eval("ip" + nextip + ".focus()")
+                                             }
+                                     }
+
+                                     function mask_c(obj) {
+                                         clipboardData.setData('text', clipboardData.getData('text').replace(/[^\d]/g, ''))
+                                     }
+                                 </script>
+                             </div>
+                             <div class="param-item">
+                                 <div class="title"> 端口：</div>
+                                 <input type="text" class="portInput param" name="port"/>
+                             </div>
+                             <div class="param-item">
+                                 <div class="title"> 目标AET：</div>
+                                 <input type="text" class="portitle  param" name="aet"/>
+                             </div>
+                             <div class="param-item">
+                                 <div class="title"> 本地AET：</div>
+                                 <input type="text" class="portitleLocal  param" name="aetLocal"/>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="film-param-box">
+                         <div class="param-box">
+                             <div class="param-item">
+                                 <div class="title">胶片目标：</div>
+                                 <select name="position" class="param">
+                                     <option>processor</option>
+                                     <option>magazine</option>
+                                 </select>
+                             </div>
+                             <div class="param-item">
+                                 <div class="title"> 胶片类型：</div>
+                                 <select name="type" class="param">
+                                     <option>blue film</option>
+                                     <option>clear film</option>
+                                     <option>paper</option>
+                                 </select>
+                             </div>
+                             <div class="param-item">
+                                 <div class="title"> 优先等级：</div>
+                                 <select name="priority" class="param">
+                                     <option>low</option>
+                                     <option>med</option>
+                                     <option>high</option>
+                                 </select>
+                             </div>
+                             <div class="param-item">
+                                 <div class="title"> 放大类型：</div>
+                                 <select name="magnifyType" class="param">
+                                     <option>none</option>
+                                     <option>cubic</option>
+                                     <option>replicate</option>
+                                     <option>bilinear</option>
+                                 </select>
+                             </div>
+                             <div class="param-item">
+                                 <div class="printSet-radio param-check">
+                                     <input type="checkbox" name="gray" value="1"/><span
+                                         style="margin-left: 10px;">彩色胶片打印</span>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>-->
+                <div class="ceilBox">
+                    <div class="title">目标打印机设置</div>
+
+                    <div class="printer-param-box">
+                        <div class="param-box">
+
+                            <div class="param-item">
+                                <div class="title">名称：</div>
+                                <input type="text" class="nameInput param" name="name"/></div>
+                            <div class="param-item">
+                                <div class="title">位置：</div>
+                                <select type="text" class="param" name="printerType">
+                                    <option>remote</option>
+                                    <option>local</option>
+                                </select></div>
+
+
+                            <div class="param-item">
+                                <div class="title"> IP：</div>
+                                <span class="inputBox">
+                <input type=text name=ip1 maxlength=3 class="ipInput  param" onkeyup="mask(this)" value="127"
+                       onbeforepaste=mask_c()>.<input type=text name=ip2 maxlength=3 class=ipInput onkeyup="mask(this)"
+                                                      value="0" onbeforepaste=mask_c()>.<input type=text name=ip3
+                                                                                               maxlength=3
+                                                                                               class="ipInput"
+                                                                                               onkeyup="mask(this)"
+                                                                                               value="0"
+                                                                                               onbeforepaste=mask_c()>.<input
+                                        type=text name=ip4 maxlength=3 class="ipInput" onkeyup="mask(this)" value="1"
+                                        onbeforepaste=mask_c()>
+            </span>
+                                <script>
+                                    function mask(obj) {
+                                        if($('.printer-set-box').is(":hidden")||$('.printer-set-box').css('display')=='none'){
+                                            return;
+                                        }else{
+                                            obj.value = obj.value.replace(/[^\d]/g, '');
+                                            key1 = event.keyCode
+                                            if (key1 == 37 || key1 == 39) {
+                                                obj.blur();
+                                                nextip = parseInt(obj.name.substr(2, 1))
+                                                nextip = key1 == 37 ? nextip - 1 : nextip + 1;
+                                                nextip = nextip >= 5 ? 1 : nextip
+                                                nextip = nextip <= 0 ? 4 : nextip
+                                                eval("ip" + nextip + ".focus()")
+                                            }
+                                            if (obj.value.length >= 3)
+                                                if (parseInt(obj.value) >= 256 || parseInt(obj.value) <= 0) {
+                                                    alert(parseInt(obj.value) + "IP地址错误！")
+                                                    obj.value = ""
+                                                    obj.focus()
+                                                    return false;
+                                                } else {
+                                                    obj.blur();
+                                                    nextip = parseInt(obj.name.substr(2, 1)) + 1
+                                                    nextip = nextip >= 5 ? 1 : nextip
+                                                    nextip = nextip <= 0 ? 4 : nextip
+                                                    eval("ip" + nextip + ".focus()")
+                                                }
+                                        }
+
+
+                                    }
+
+                                    function mask_c(obj) {
+                                        clipboardData.setData('text', clipboardData.getData('text').replace(/[^\d]/g, ''))
+                                    }
+                                </script>
+                            </div>
+                            <div class="param-item">
+                                <div class="title"> 端口：</div>
+                                <input type="text" class="portInput param" name="port"/>
+                            </div>
+                            <div class="param-item">
+                                <div class="title"> 目标AET：</div>
+                                <input type="text" class="portitle  param" name="aet"/>
+                            </div>
+                            <div class="param-item">
+                                <div class="title"> 本地AET：</div>
+                                <input type="text" class="portitleLocal  param" name="aetLocal"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="film-param-box">
+                        <div class="param-box">
+                            <div class="param-item">
+                                <div class="title">胶片目标：</div>
+                                <select name="position" class="param">
+                                    <option>processor</option>
+                                    <option>magazine</option>
+                                </select>
+                            </div>
+                            <div class="param-item">
+                                <div class="title"> 胶片类型：</div>
+                                <select name="type" class="param">
+                                    <option>blue film</option>
+                                    <option>clear film</option>
+                                    <option>paper</option>
+                                </select>
+                            </div>
+                            <div class="param-item">
+                                <div class="title"> 优先等级：</div>
+                                <select name="priority" class="param">
+                                    <option>low</option>
+                                    <option>med</option>
+                                    <option>high</option>
+                                </select>
+                            </div>
+                            <div class="param-item">
+                                <div class="title"> 放大类型：</div>
+                                <select name="magnifyType" class="param">
+                                    <option>none</option>
+                                    <option>cubic</option>
+                                    <option>replicate</option>
+                                    <option>bilinear</option>
+                                </select>
+                            </div>
+                            <div class="param-item">
+                                <div class="printSet-radio param-check">
+                                    <input type="checkbox" name="gray" value="1"/><span
+                                        style="margin-left: 10px;">彩色胶片打印</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="selec-branch-box">
+                    <div>
+                        <div class="yes modify-printer" id="modifyPrinterSure" style="display: none;">确定</div>
+                        <div class="yes add-printer" id="addPrinterSure" style="display: none;">确定</div>
+                        <div class="yes printCloseBtn">取消</div>
+                    </div>
+                </div>
+            </div>
+            <!--四角设置弹出框-->
+            <div class="set-mode tag-set-box" set-mode="tag-set">
+                <div class="topbar">
+                    <div class="close" onclick="setModeShow('tag-set',false )"><img src="../img/common/close.png"></div>
+                </div>
+                <div class="ceilBox">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#setInfo" data-toggle="tab" class="tagSetHref">
+                                四角信息设置
+                            </a>
+                        </li>
+                        <li><a href="#viewFont" data-toggle="tab" class="viewFontHref">设置预览</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="setInfo">
+                            <div class="leftBox">
+                                <ul class="selectBox">
+                                    <li desc="print-info-SpacingBetweenSlices">层间距</li>
+                                    <li desc="print-info-FS">FS</li>
+                                    <li desc="print-info-TrTe">TR/TE</li>
+                                    <li desc="print-info-fov">FOV</li>
+                                    <li desc="print-info-imgPosition">图像位置</li>
+                                    <li desc="print-info-imgOriention">图像方位</li>
+                                    <li desc="print-info-studyTime">检查时间</li>
+                                    <li desc="print-info-modality">检查模态</li>
+                                    <li desc="print-info-samplesP">采样率</li>
+                                    <li desc="print-info-accessionNum">登记编号</li>
+                                </ul>
+
+                            </div>
+                            <div class="rightBox">
+                                <!--左上信息-->
+                                <div class="fontDiv">
+                                    <span class="font-write">左上信息</span>
+                                    <ul id="ltTags">
+
+
+                                        <li class="courseList" desc="print-info-SeNo">
+                                            <span class="pull-left">序列编号</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <li class="courseList" desc="print-info-nowNo">
+                                            <span class="pull-left">图像序号</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <li class="courseList" desc="print-info-BodyPartExamined">
+                                            <span class="pull-left">检查部位</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <li class="courseList" desc="print-info-StudyDescription">
+                                            <span class="pull-left">检查描述</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <li class="courseList" desc="print-info-SeriesDescription">
+                                            <span class="pull-left">序列描述</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--右上信息-->
+                                <div class="fontDiv">
+                                    <span class="font-write">右上信息</span>
+                                    <ul id="rtTags">
+                                        <li class="courseList" desc="print-info-accessionNum">
+                                            <span class="pull-left">登记编号</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <li class="courseList" desc="print-info-InstitutionName">
+                                            <span class="pull-left">机构名称</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <li class="courseList" desc="print-info-PatientName">
+                                            <span class="pull-left">患者姓名</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <li class="courseList" desc="print-info-PatientID">
+                                            <span class="pull-left">患者ID号</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <li class="courseList" desc="print-info-PatientAge">
+                                            <span class="pull-left">患者年龄/性别</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+
+                                        <!-- <li class="courseList" desc="print-info-PatientSex">
+                                             <span class="pull-left">患者性别</span>&nbsp;
+                                             <div class="clearfix pull-right">
+                                                 <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                 <a class="moveDownBtn" href="javascript:;"><span class="delTit">下移</span></a>
+                                                 <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                             </div>
+                                         </li>-->
+
+                                    </ul>
+                                </div>
+                                <!--左下信息-->
+                                <div class="fontDiv">
+                                    <span class="font-write"> 左下信息</span>
+                                    <ul id="lbTags">
+                                        <li class="courseList" desc="print-info-wwwl">
+                                            <span class="pull-left">窗位窗宽</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <li class="courseList" desc="print-info-TL">
+                                            <span class="pull-left">层厚/实际相对位置</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <!--<li>wo shi mei<span>上移&nbsp;下移&nbsp;删除</span></li>-->
+                                    </ul>
+                                </div>
+                                <!--右下信息-->
+                                <div class="fontDiv">
+                                    <span class="font-write">右下信息</span>
+                                    <ul id="rbTags">
+                                        <li class="courseList" desc="print-info-mAkvp">
+                                            <span class="pull-left">千伏/毫安</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+                                        <!-- <li class="courseList" desc="print-info-mA" >
+                                             <span class="pull-left">毫安</span>&nbsp;
+                                             <div class="clearfix pull-right">
+                                                 <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                 <a class="moveDownBtn" href="javascript:;"><span class="delTit">下移</span></a>
+                                                 <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                             </div>
+                                         </li>-->
+
+                                        <li class="courseList" desc="print-info-datetime">
+                                            <span class="pull-left">检查日期</span>&nbsp;
+                                            <div class="clearfix pull-right">
+                                                <a class="moveUpBtn" href="javascript:;"><span class="delTit">上移</span></a>
+                                                <a class="moveDownBtn" href="javascript:;"><span
+                                                        class="delTit">下移</span></a>
+                                                <a class="deleteBtn" href="javascript:;"><span class="delTit">删除</span></a>
+                                            </div>
+                                        </li>
+
+                                        <!--<li>wo shi mei<span>上移&nbsp;下移&nbsp;删除</span></li>-->
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="viewFont">
+                            <!--字号设置与四角信息设置预览区域-->
+                            <div id="tagsPreView" class="viewImgBox">
+                                <div class="set-preview">
+                                    <div id='tagViewport' class="preview-win">
+                                        <canvas id="preViewCanv" width="420px" height="420px"></canvas>
+                                    </div>
+                                </div>
+                                <div id="dobuleViewport" class="preview-temp-win"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="selec-branch-box">
+                    <div>
+                        <div class="yes" id="addPrintTag">添加</div>
+                        <div class="yes" id="tagsetOK">保存</div>
+                        <!--字号选择-->
+                        <div class="font-pre-set" style="display: none"><span>字号设置：</span><select id="tagFontsize"
+                                                                                                  class="font-select">
+                            <option>26</option>
+                            <option>10</option>
+                            <!--<option selected="">12</option>-->
+                            <option>12</option>
+                            <option>14</option>
+                            <option>16</option>
+                            <option>18</option>
+                            <option>20</option>
+                            <option>22</option>
+                            <option>24</option>
+                            <option>28</option>
+                            <option>30</option>
+                            <option>32</option>
+                        </select></div>
+                    </div>
+                </div>
+            </div>
+            <!--图像测量弹出框-->
+            <div class="set-mode print-magnify-box" set-mode="print-magnify">
+                <div class="topbar">
+                    <div class="set-title"><span>图像测量</span></div>
+                    <div class="close" id="closePrintMagnifyBox" onclick="setModeShow('print-magnify',false)"><img
+                            src="../img/common/close.png">
+                    </div>
+                </div>
+                <div class="magnify-tool-box">
+                    <div class="magnify-tools" style="width: auto;height: 100%;">
+                        <li id="printLine" class="line btnStyle3" data-img="tool_line.bmp"></li>
+                        <li id="printArrows" class="arrows btnStyle3" data-img="tool_arrow.bmp"></li>
+                        <li id="printRect" class="rectangle btnStyle3" data-img="tool_rect.bmp"></li>
+                        <li id="printEllipse" class="roundness btnStyle3" data-img="tool_ellipse.bmp"></li>
+                        <li id="printAngle" class="role btnStyle3" data-img="tool_angle.bmp"></li>
+                        <!--<li id="printWWWLmagnify" class="role btnStyle3" data-img="tool_angle.bmp"></li>-->
+                        <li id="printWWWLmagnify" class="light btnStyle2" title="窗位/窗宽" data-img="tool_wl.bmp"></li>
+                        <li id="printResetmagnify" class="recover btnStyle1" title="恢复" data-img="tool_reset.bmp"></li>
+                        <li id="printClear" class="clear"></li>
+                    </div>
+                </div>
+                <!--sj add-->
+                <dialog class="annotationDialog">
+                    <h5>Enter your annotation</h5>
+                    <div class="annotationTextInputOptions">
+                        <label for="annotationTextInput">New label</label>
+                        <input name="annotationTextInput" class="annotationTextInput" type="text"/>
+                    </div>
+                    <a class="annotationDialogConfirm btn btn-sm btn-primary">OK</a>
+                </dialog>
+                <dialog class="relabelDialog" oncontextmenu="return false">
+                    <h5>Edit your annotation</h5>
+                    <div class="annotationTextInputOptions">
+                        <label for="annotationTextInput">New label</label>
+                        <input name="annotationTextInput" class="annotationTextInput" type="text"/>
+                    </div>
+                    <div>
+                        <a class="relabelRemove btn btn-sm btn-secondary">Remove marker</a>
+                        <a class="relabelConfirm btn btn-sm btn-primary">OK</a>
+                    </div>
+                </dialog>
+                <div id="imgMagnifyDiv" class="ceilBox">
+                    <!--放图-->
+
+                </div>
+            </div>
+
+            <!--直接裁剪-->
+            <div class="set-mod print-cut-box" set-mode="print-cut" style="display: none;">
+                <div class="topbar">
+                    <div class="set-title"> 图像裁剪</div>
+                    <div class="close" id="closePrintCutBox" onclick="setModeShow('print-cut',false)"><img
+                            src="../img/common/close.png">
+                    </div>
+                </div>
+                <div class="print-img-cut">
+                    <div class="src-dcm" style="z-index: 1;"></div>
+                    <div class="src-img" style="z-index: 2;"></div>
+
+                </div>
+                <div class="print-cut-tool-box">
+                    <div class="print-cut-sure">确定</div>
+                </div>
+
+
+            </div>
+
+
+            <!--公用文件下载框-->
+            <div class="set-mode common-download-box" set-mode="common-download">
+                <div class="topbar">
+                    <div class="set-title"><span>下载列表</span></div>
+                    <div class="close" onclick="setModeShow('download',false )"><img src="../img/common/close.png">
+                    </div>
+                </div>
+                <div class="ceilBox">
+                    <div class="download-list">
+                        <ul class="download-item">
+                            <li onclic="setModeShow('common-download',false)">下载WWWWW服务1</li>
+                            <li onclick="setModeShow('common-download',false)">下载WWWWW服务2</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--图像文件下载框-->
+            <div class="set-mode download-box" set-mode="download">
+                <div class="topbar">
+                    <div class="set-title"><span>图像下载文件类型</span></div>
+                    <div class="close" onclick="setModeShow('download',false )"><img src="../img/common/close.png">
+                    </div>
+                </div>
+                <div class="download-params" style="display: none"></div>
+                <div class="ceilBox">
+                    <div class="download-list">
+                        <ul class="download-item">
+                            <li id="dcmDownload" onclick="setModeShow('download',false )">下载DCM文件</li>
+                            <li id="jpgDownload" onclick="setModeShow('download',false )">下载JPG文件</li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="selec-branch-box">
+                     <div>
+                         <div class="yes download-img-sure" >确认下载</div>
+                     </div>
+                 </div>-->
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="jpg-temp-draw-box">
+
+    </div>
+
+
+</div>
+<!--固定工具栏-->
+<script id="fixedtoolTemp" type="text/html">
+    <div class="fixed-tool" style="display: none;">
+        <!--分隔线-->
+        <div class='top-line'></div>
+        <div class="tool_window">
+            <ul style="font-size: 12px;margin-left: 5px;margin-right: 5px;margin-top: 5px">窗位: <input id="centerInput"
+                                                                                                      type="text"
+                                                                                                      class="windowInput centerInput"
+                                                                                                      style="color:#ffffff; margin-right: 4px;"/>
+                窗宽: <input id="widthInput" type="text" class="windowInput widthInput" style="color: #ffffff;"/></ul>
+            <ul style="display: inline-block; width: 100% ;padding-right: 4px">
+                <!--调窗-->
+                <div class='imgTool  img-measure-tool  btnArea js-wwwc' title="调窗" data-measure-type="wwwc">
+                    <div class='btn'>
+                        <div class="icon icon-wwwc"></div>
+                    </div>
+                </div>
+                <!--快捷调窗-->
+                <div class='  btnArea js-quickwwwc' title="预设调窗">
+                    <div class='btn'>
+                        <div class="icon icon-quickwwwc"></div>
+                    </div>
+                </div>
+                <!--反显-->
+                <div class='  btnArea js-invert' title="反显">
+                    <div class='btn'>
+                        <div class="icon icon-inv"></div>
+                    </div>
+                </div>
+                <!--伪彩-->
+                <div class='  btnArea js-fakecolor' title="伪彩"
+                     style="padding-right: 0px!important; position: relative;">
+                    <div class='btn'>
+                        <div class="icon icon-fakecolor"></div>
+                    </div>
+                    <div class="fake-color-list"
+                         style=" z-index:2; display: none;position: absolute;top: 30px;left: 30px;">
+                        <li value="">None</li>
+                        <li value="autumn">Autumn</li>
+                        <li value="blues">Blues</li>
+                        <li value="bone">Bone</li>
+                        <li value="cool">Cool</li>
+                        <li value="coolwarm">CoolWarm</li>
+                        <li value="copper">Copper</li>
+                        <li value="gray">Gray</li>
+                        <li value="hot">Hot</li>
+                        <li value="hotIron">Hot Iron</li>
+                        <li value="hotMetalBlue">Hot Metal Blue</li>
+                        <li value="hsv">HSV</li>
+                        <li value="jet">Jet</li>
+                        <li value="pet">PET</li>
+                        <li value="pet20Step">PET 20 Step</li>
+                        <li value="spectral">Spectral</li>
+                        <li value="spring">Spring</li>
+                        <li value="summer">Summer</li>
+                        <li value="winter">Winter</li>
+                    </div>
+                </div>
+            </ul>
+            <div class="fakecolor" style="display: none;">
+                <select id="colormaps" style="width:50px;font-size: 10px;">
+                    <option value="">None</option>
+                    <option value="autumn">Autumn</option>
+                    <option value="blues">Blues</option>
+                    <option value="bone">Bone</option>
+                    <option value="cool">Cool</option>
+                    <option value="coolwarm">CoolWarm</option>
+                    <option value="copper">Copper</option>
+                    <option value="gray">Gray</option>
+                    <option value="hot">Hot</option>
+                    <option value="hotIron">Hot Iron</option>
+                    <option value="hotMetalBlue">Hot Metal Blue</option>
+                    <option value="hsv">HSV</option>
+                    <option value="jet">Jet</option>
+                    <option value="pet">PET</option>
+                    <option value="pet20Step">PET 20 Step</option>
+                    <option value="spectral">Spectral</option>
+                    <option value="spring">Spring</option>
+                    <option value="summer">Summer</option>
+                    <option value="winter">Winter</option>
+                </select>
+            </div>
+            <div class="fusion"
+                 style="margin-top:5px;width:50px;height: 30px; font-size: 16px;color: red; background-color: #32bc98;text-align: center;line-height: 30px;float: left;display: none;">
+                融合
+            </div>
+            <div class="fusionMode" style="display: none">
+                <select id="fusionColormaps" style="width:50px;font-size: 10px;">
+                    <option value="">None</option>
+                    <option value="autumn">Autumn</option>
+                    <option value="blues">Blues</option>
+                    <option value="bone">Bone</option>
+                    <option value="cool">Cool</option>
+                    <option value="coolwarm">CoolWarm</option>
+                    <option value="copper">Copper</option>
+                    <option value="gray">Gray</option>
+                    <option value="hot">Hot</option>
+                    <option value="hotIron">Hot Iron</option>
+                    <option value="hotMetalBlue">Hot Metal Blue</option>
+                    <option value="hsv">HSV</option>
+                    <option value="jet">Jet</option>
+                    <option value="pet">PET</option>
+                    <option value="pet20Step">PET 20 Step</option>
+                    <option value="spectral">Spectral</option>
+                    <option value="spring">Spring</option>
+                    <option value="summer">Summer</option>
+                    <option value="winter">Winter</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!--活动工具栏-->
+<script id="flexibletoolTemp" type="text/html">
+    <div class="flexible-tool">
+        <div class="date-tips"
+             style="height: 100%;width: 100%;pointer-events:none;display: flex;justify-content: center; align-items: center;color: yellow;"></div>
+
+        <div class="tool_window">
+            <ul>窗位: <input type="text" class="windowInput centerInput" style="color:#ffffff; margin-right: 4px;"/>
+                窗宽:
+                <input type="text" class="windowInput widthInput" style="color: #ffffff;"/></ul>
+
+            <ul>                 <!--调窗-->
+                <div class='imgTool  img-measure-tool  btnArea js-wwwc' title="调窗" data-measure-type="wwwc">
+                    <div class='btn'>
+                        <div class="icon icon-wwwc"></div>
+
+                    </div>
+
+                </div>
+                <!--区域调窗-->
+                <div class='imgTool  img-measure-tool btnArea js-wwwcRegion' data-measure-type="wwwcRegion"
+                     title="区域调窗">
+                    <div class='btn'>
+                        <div class="icon icon-wwwcRegion"></div>
+
+                    </div>
+
+                </div>
+                <!--反显-->
+                <div class='  btnArea js-invert' title="反显">
+                    <div class='btn'>
+                        <div class="icon icon-inv"></div>
+
+                    </div>
+
+                </div>
+                <!--伪彩-->
+                <div class='  btnArea js-fakecolor' style="padding-right: 0px!important; position: relative;">
+                    <div class='btn' title="伪彩">
+                        <div class="icon icon-fakecolor"></div>
+
+                    </div>
+
+                    <div class="fake-color-list"
+                         style=" z-index:2; display: none;position: absolute;top: 25px;left: 25px;">
+
+                        <li value="">None</li>
+
+                        <li value="autumn">Autumn</li>
+
+                        <li value="blues">Blues</li>
+
+                        <li value="bone">Bone</li>
+
+                        <li value="cool">Cool</li>
+
+                        <li value="coolwarm">CoolWarm</li>
+
+                        <li value="copper">Copper</li>
+
+                        <li value="gray">Gray</li>
+
+                        <li value="hot">Hot</li>
+
+                        <li value="hotIron">Hot Iron</li>
+
+                        <li value="hotMetalBlue">Hot Metal Blue</li>
+
+                        <li value="hsv">HSV</li>
+
+                        <li value="jet">Jet</li>
+
+                        <li value="pet">PET</li>
+
+                        <li value="pet20Step">PET 20 Step</li>
+
+                        <li value="spectral">Spectral</li>
+
+                        <li value="spring">Spring</li>
+
+                        <li value="summer">Summer</li>
+
+                        <li value="winter">Winter</li>
+
+                    </div>
+
+                </div>
+
+            </ul>
+
+        </div>
+        <!--快捷调窗-->
+        <div class='  tool_btn js-quickwwwc' title="预设调窗">
+            <div class='btn'>
+                <div class="icon icon-quickwwwc"></div>
+
+            </div>
+
+        </div>
+        <!--指针-->
+        <div class='stateTool tool_btn js-default' title="默认鼠标" style="display: none;">
+            <div class='btn'>
+                <div class="icon icon-pointer"></div>
+
+            </div>
+
+        </div>
+        <!--刷新恢复-->
+        <div class='tool_btn js-refresh' title="刷新">
+            <div class='btn'>
+                <div class="icon icon-refresh"></div>
+
+            </div>
+
+        </div>
+        <!--浏览序列-->
+        <div class='stateTool  tool_btn js-browseSeries' title="翻页">
+            <div class='btn '>
+                <div class="icon icon-paging"></div>
+            </div>
+        </div>
+        <!--影像排序-->
+        <div class='tool_btn js-order ' title="序列排序">
+            <div class='btn'>
+                <div class="icon icon-order"></div>
+            </div>
+        </div>
+        <!--影像布局-->
+        <div class='tool_btn js-layoutSelector ' title="窗口布局">
+            <div class='btn'>
+                <div class="icon icon-map"></div>
+            </div>
+        </div>
+        <!--子分格布局-->
+        <div class='tool_btn js-innerlayoutSelector ' title="序列布局">
+            <div class='btn'>
+                <div class="icon icon-mapInner"></div>
+
+            </div>
+
+        </div>
+        <!--调窗-->
+        <div class='tool_btn  stateTool  js-wwwc' title="调窗" style="display: none;">
+            <div class='btn'>
+                <div class="icon icon-wwwc"></div>
+
+            </div>
+
+        </div>
+        <!--区域调窗-->
+        <div class='tool_btn  stateTool  js-wwwcRegion' title="区域调窗" style="display: none;">
+            <div class='btn'>
+                <div class="icon icon-wwwc"></div>
+
+            </div>
+
+        </div>
+        <!--反显-->
+        <div class='  tool_btn js-invert' title="反显" style="display: none;">
+            <div class='btn'>
+                <div class="icon icon-inv"></div>
+
+            </div>
+
+        </div>
+
+        <!--左旋90-->
+        <div class='tool_btn js-ccw' title="左旋">
+            <div class='btn'>
+                <div class="icon icon-rotateL"></div>
+
+            </div>
+
+        </div>
+        <!--右旋90-->
+        <div class='tool_btn js-cw' title="右旋">
+            <div class='btn'>
+                <div class="icon icon-rotateR"></div>
+
+            </div>
+
+        </div>
+        <!--垂直镜像-->
+        <div class='tool_btn js-vRev' title="垂直镜像">
+            <div class='btn'>
+                <div class="icon icon-vRev"></div>
+
+            </div>
+
+        </div>
+        <!--水平镜像-->
+        <div class='tool_btn js-hRev' title="水平镜像">
+            <div class='btn'>
+                <div class="icon icon-hRev"></div>
+
+            </div>
+
+        </div>
+        <!--移动-->
+        <div class='imgTool  img-measure-tool tool_btn js-pan' title="移动" data-measure-type="pan">
+            <div class='btn'>
+                <div class="icon icon-drag"></div>
+
+            </div>
+
+        </div>
+        <!--缩放-->
+        <div class='imgTool  img-measure-tool tool_btn js-zoom' title="缩放" data-measure-type="zoom">
+            <div class='btn'>
+                <div class="icon icon-zoomInOut"></div>
+
+            </div>
+
+        </div>
+        <!--局部放大-->
+        <div class='imgTool   tool_btn js-magnify' title="局部放大">
+            <div class='btn'>
+                <div class="icon icon-zoomPart"></div>
+
+            </div>
+
+        </div>
+        <!--定位线-->
+        <div class='stateTool tool_btn js-reference' title="定位线">
+            <div class='btn '>
+                <div class="icon icon-pos"></div>
+
+            </div>
+
+        </div>
+
+        <div class='stateTool tool_btn    js-infoDiretMarker' title="方向信息">
+            <div class='btn '>
+                <div class="icon" style="line-height:30px;text-align: center;justify-content: space-between; ">方向</div>
+
+            </div>
+
+        </div>
+
+
+        <!--显示/隐藏图像信息-->
+        <div class='stateTool tool_btn  checked js-infoVisible' title="文字信息">
+            <div class='btn btnActive'>
+                <div class="icon icon-font"></div>
+
+            </div>
+
+        </div>
+        <!--分隔线-->
+        <div class='topLine'></div>
+        <!--播放-->
+        <div class='tool_btn js-play' title="播放">
+            <div class='btn'>
+                <div class="icon icon-play"></div>
+
+            </div>
+
+        </div>
+        <!--播放停止-->
+        <div class='tool_btn js-stop' style="display: none;" title="停止">
+            <div class='btn'>
+                <div class="icon icon-pause"></div>
+
+            </div>
+
+        </div>
+        <!--联动-->
+        <div class="stateTool tool_btn js-scrollAll" title="联动">
+            <div class='btn'>
+                <div class="icon icon-scrollSync"></div>
+
+            </div>
+
+        </div>
+        <!--同步-->
+        <div class="stateTool tool_btn js-syn" title="同步">
+            <div class='btn'>
+                <div class="icon icon-layerSyn"></div>
+
+            </div>
+
+        </div>
+        <!--分隔线-->
+        <div class='topLine' style="margin-left: -5px"></div>
+        <!--胶片打印-->
+        <div class='tool_btn js-modePage' mode="print" title="胶片打印">
+            <div class='btn'>
+                <div class="icon icon-print"></div>
+
+            </div>
+
+        </div>
+        <!--下载-->
+        <div class='tool_btn js-downloadset' title="文件下载" style="display: none;">
+            <div class='btn'>
+                <div class="icon icon-download"></div>
+
+            </div>
+
+        </div>
+        <!--本地上传文件-->
+        <div class='tool_btn ' title="打开本地文件" style="display: none"> <!--style="display: none"-->
+            <div class='btn js-putFileBtn'>
+                <div class="icon icon-upload"></div>
+
+            </div>
+            <input id="putFile" style="display: none" type="file"/>
+        </div>
+        <!--设置-->
+        <div class='tool_btn js-engine-sets' title="设置" onclick=" setModeShow('sets',true)">
+            <div class='btn'>
+                <div class="icon icon-setup"></div>
+
+            </div>
+        </div>
+        <div class='set_area'>
+            <div class="item">
+                <span> 倍数：</span>
+                <input id="mg-scale" type="range" value="3" max="10"
+                       min="1" step="1" onchange="changeMgSet()">
+                <span class="mg-scale-val">3</span>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!--预览缩略图-->
+<script id="instancePreviewTemp" type="text/html">
+    <div class="instance-scan" data-studyId="<%=studyId%>" imageidPreview='<%=imageId %>' instanceNo='<%=instanceNo %>' signId='<%=signId %>'>
+        <div class="img js-dragToCanv" id='<%=id%>' seriesId='<%=seriesId %>' imageid='<%=imageId %>'
+             seriesNo='<%=seriesNo %>' instanceNo='<%=instanceNo %>'></div>
+    </div>
+</script>
+<!--布局radio模板-->
+<script id="layoutRadioTemp" type="text/html">
+    <li>
+        <input type="radio" name="layoutRadio"  value='<%=row_col %>' /><label
+    ><%=text%></label>
+    </li>
+</script>
+<script id="mainTemp" type="text/html">
+    <div class="main" id='<%=mainId %>'>
+        <div class="leftBox">
+            <div class="thumbnailBox">
+
+            </div>
+
+            <div class="measureToolBox">
+
+            </div>
+        </div>
+        <div class="rightBox">
+            <div class="topBox" style="top: 0px;left: 0px;">
+            </div>
+            <div class="workBox viewer" style="display: none"></div>
+            <div class="bottomBox" style="bottom: 0px;left: 0px;">
+            </div>
+        </div>
+    </div>
+</script>
+<script id="measuretoolTemp" type="text/html">
+    <div class="tools">
+
+        <!--默认鼠标-->
+        <div class='imgTool img-measure-tool btnArea js-arrow' title="默认鼠标" data-measure-type="mouse">
+            <div class='btn'>
+                <div class="icon icon-mouseL"></div>
+            </div>
+        </div>
+
+
+        <!--箭头标识-->
+        <div class='imgTool img-measure-tool btnArea js-arrow' title="箭头标识" data-measure-type="arrowAnnotate">
+            <div class='btn'>
+                <div class="icon icon-arrow"></div>
+            </div>
+        </div>
+
+
+        <!--点测量1-->
+        <div class='imgTool img-measure-tool btnArea js-probe' title="点值测量" data-measure-type="probe">
+            <div class='btn'>
+                <div class="icon icon-spot"></div>
+            </div>
+        </div>
+
+        <!--长度测量-->
+        <div class='imgTool img-measure-tool btnArea js-length' title="长度测量" data-measure-type="length">
+            <div class='btn'>
+                <div class="icon icon-line"></div>
+            </div>
+
+        </div>
+
+
+        <!--垂直测量-->
+        <div class='imgTool img-measure-tool btnArea js-deviation' title="垂直测量" data-measure-type="deviation">
+            <div class='btn'>
+                <div class="icon icon-rectLine" style="height: 25px;"></div>
+            </div>
+        </div>
+
+
+        <!--心胸比  js-heartScale-->
+        <div class='imgTool img-measure-tool btnArea js-heartScale' title="心胸比" data-measure-type="heartScale">
+            <div class='btn'>
+                <div class="icon icon-twolines"></div>
+            </div>
+
+        </div>
+
+        <!--角度测量-->
+        <div class='imgTool img-measure-tool btnArea js-angle' title="角度测量" data-measure-type="simpleAngle">
+            <div class='btn'>
+                <div class="icon icon-angle"></div>
+            </div>
+
+        </div>
+
+
+        <!--椭圆测量-->
+        <div class='imgTool img-measure-tool btnArea js-ellipse' title="椭圆测量" data-measure-type="ellipticalRoi">
+            <div class='btn'>
+                <div class="icon icon-ellipse"></div>
+                <!--<div class="icon "><span class="fa fa-circle-o"></span></div>-->
+            </div>
+
+        </div>
+
+        <div class='imgTool img-measure-tool btnArea js-freehand' title="多边形测量" style="text-align: center"
+             data-measure-type="freehand">
+            <div class='btn'>
+                <div class="icon icon-freehand"></div>
+            </div>
+        </div>
+
+        <!--矩形测量-->
+        <div class='imgTool img-measure-tool btnArea js-rect ' title="矩形测量" data-measure-type="rectangleRoi">
+            <div class='btn'>
+                <div class="icon icon-rect"></div>
+            </div>
+
+        </div>
+
+        <div class='imgTool img-measure-tool btnArea js-eraserToolState' title="撤销测量" data-measure-type="eraser">
+            <div class='btn'>
+                <div class="icon icon-eraser"></div>
+            </div>
+        </div>
+        <!--分隔线-->
+        <li class="leftLine"></li>
+        <!--清除测量-->
+        <div class='btnArea img-measure-tool js-clearToolState' title="清空测量" data-measure-type="clear">
+            <div class='btn'>
+                <div class="icon icon-clear"></div>
+            </div>
+        </div>
+
+        <!--隐藏右侧缩略图-->
+
+        <div class="btnBottom js-hideLeft" state="hide" title="隐藏右侧缩略图">
+            <div class='btn'>
+                <div class="icon icon-shrink"></div>
+            </div>
+        </div>
+
+
+    </div>
+</script>
+<script id="seriesPreviewTemp1" type="text/html">
+
+    <div class="series-scan-box" data-seriesNo="<%=seriesNo%>" data-studyId="<%=studyId%>"  style="background-color: black;">
+        <div class="series-title">
+            <div class="series-info">
+                <!--                <div class="series-num"><%=seriesNo%>-->
+
+                <!--                </div>-->
+                <div class="series-des" title="<%=seriesDes%>"><%=seriesDes%>
+
+                </div>
+            </div>
+
+
+            <div class="series-shrink">
+                <li class="series-close fa fa-folder-open-o" aria-hidden="true" style="display: none;"
+                    title="收起当前序列"></li>
+                <li class="series-open  fa fa-folder-o" aria-hidden="true" title="展开当前序列"></li>
+            </div>
+            <div class="series-download" title="下载当前序列">
+                <i class="fa fa-download" aria-hidden="true"></i>
+            </div>
+            <div class="load-state">
+                <div class="load-count"><%=loadCount%></div>
+                <span style="float: left">/</span>
+                <div class="total" title="<%=studyTime%>"><%=total%></div>
+            </div>
+
+        </div>
+        <div class="series-scan" data-seriesId='<%=seriesId%>' seriesNo='<%=seriesNo %>'>
+            <!--            <div class="load-state"> <div class="load-count"  ><%=loadCount%></div><span style="float: left">/</span> <div class="total" title="<%=studyTime%>"><%=total%></div></div>-->
+
+        </div>
+    </div>
+</script>
+<script id="seriesPreviewTemp" type="text/html">
+
+    <div class="series-scan-box" data-seriesNo="<%=seriesNo%>" style="background-color: black;">
+        <div class="series-title">
+            <div class="series-info">
+                <!--                <div class="series-num"><%=seriesNo%>-->
+
+                <!--                </div>-->
+
+
+                <div class="series-des" title="<%=seriesDes%>"><%=seriesDes%>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="series-loading"><i class="fa fa-spinner" aria-hidden="true"></i></div>
+            <div class="series-shrink">
+                <li class="series-close fa fa-folder-open-o" aria-hidden="true" style="display: none;"
+                    title="收起当前序列"></li>
+                <li class="series-open  fa fa-folder-o" aria-hidden="true" title="展开当前序列"></li>
+            </div>
+            <div class="series-download" title="下载当前序列">
+                <i class="fa fa-download" aria-hidden="true"></i>
+            </div>
+            <div class="load-state">
+                <div class="load-count"><%=loadCount%></div>
+                <span style="float: left">/</span>
+                <div class="total" title="<%=studyTime%>"><%=total%></div>
+            </div>
+
+        </div>
+
+        <div class="series-scan" data-seriesId='<%=seriesId%>' seriesNo='<%=seriesNo %>'>
+
+        </div>
+    </div>
+</script>
+
+
+<script id="seriesTemp" type="text/html">
+    <div class="series seriesWindow" id='<%=seriesId %>' no='<%=no %>'>
+        <!-- 图像翻页滚动条-->
+        <div class="imgSlider"
+             style=" opacity:0; border-radius: 5px; background-color:#E9E7E2; width: 20px;height: 60%;z-index: 9999;position:absolute;bottom: 20%;top:20%;right: 5px;">
+            <div class="imgblock"
+                 style="opacity:0.8; border-radius: 5px; background-color: black;width: 20px;height: 15px;z-index: 10000;position:absolute;top: 0;left:0; border: 1px solid #42A0D6"></div>
+        </div>
+
+
+        <!--播发控制条-->
+        <ul class="playcontrol" style="display: none">
+            <!--<ul class="playcontrol"   >-->
+            <div class="btnArea playFirst" title="第一张">
+                <div class='btn'>
+                    <div class="icon icon-home-page2"></div>
+                </div>
+            </div>
+            <div class="btnArea playSlow" title="减速">
+                <div class='btn'>
+                    <div class="icon icon-rewind2"></div>
+                </div>
+            </div>
+            <div class="btnArea playStop" style="display: none" title="暂停">
+                <div class='btn'>
+                    <div class="icon icon-stop2"></div>
+                </div>
+            </div>
+            <div class="btnArea playStart" title="播放">
+                <div class='btn'>
+                    <div class="icon icon-paly2"></div>
+                </div>
+            </div>
+            <div class="btnArea playFast" title="加速">
+                <div class='btn'>
+                    <div class="icon icon-fast2"></div>
+                </div>
+            </div>
+            <div class="btnArea playLast" title="最后一张">
+                <div class='btn'>
+                    <div class="icon icon-shadowe2"></div>
+                </div>
+            </div>
+            <div class="speedTxt" style="color: #00bc8c">fps:2</div>
+        </ul>
+
+        <!--图像框中的按钮区域-->
+        <div class="expand">
+
+            <!--fusion-->
+            <!--  <div class="btnArea  js-fusion" title="融合"
+                   style="background-color: #ffff00;  ">
+                  融合
+                  <div class='btn' style="display: none;">
+                      <div class="icon icon-fullScreen" style="width: 22px;height: 22px"></div>
+                  </div>
+              </div>-->
+            <!--AI绘图测试-->
+            <div class="btnArea  js-drawCircle" title="AI绘图测试" lungNodeState="false"
+                 style="background-color: #00bc8c; display: none">
+                <div class='btn'>
+                    <div class="icon icon-fullScreen" style="width: 22px;height: 22px"></div>
+                </div>
+            </div>
+            <div class="btnArea  js-drawCircleClear" title="AI绘图测试清除" style="background-color: #00bc8c;display: none">
+                <div class='btn'>
+                    <div class="icon icon-fullScreen" style="width: 22px;height: 22px"></div>
+                </div>
+            </div>
+
+
+            <!--最大化-->
+            <div class="btnArea js-fullScreen" title="最大化">
+                <div class='btn'>
+                    <div class="icon icon-fullScreen" style="width: 22px;height: 22px"></div>
+                </div>
+            </div>
+
+            <div class="btnArea js-restore" title="恢复布局" style="display: none">
+                <div class='btn'>
+                    <div class="icon icon-restore" style="width: 22px;height: 22px"></div>
+                </div>
+            </div>
+
+
+            <!--vr-->
+            <div class="btnArea js-VR" style="display: none" title="VR-MPR">
+                <div class='btn'>
+                    <div class="icon icon-3D"></div>
+                </div>
+            </div>
+            <!--web3D-->
+            <!-- <div class="btnArea js-Web3D"  mode="web3D" title="WEB-3D">
+                 <div class='btn'>
+                     <div class="icon icon-web3D"></div>
+                 </div>
+             </div>-->
+
+            <div class="btnArea js-modePage js-mpr" title="MPR" mode="mpr" style="display: none">
+                <div class='btn'>
+                    <div class="icon icon-mpr"></div>
+                </div>
+            </div>
+
+
+            <!--十堰需求AI功能-->
+            <div class="btnArea js-lungAI-shiyan" title="lungAI-new" type="-1" style="display: none">
+                <div class='btn' style="text-align: center; line-height: 15px;">
+                    <div class="icon icon-lungAI"></div>
+
+                </div>
+            </div>
+
+
+            <!--肺结节AI诊断扩展选项-->
+            <div class="btnArea type-node lungNodeExpand" type="0" title="肺结节">
+                <div class='btn' style="text-align: center; line-height: 15px;">
+                    <div class="icon  "></div>
+                    N
+                </div>
+            </div>
+
+            <div class="btnArea type-sugger lungNodeExpand" type="1" title="糖网">
+                <div class='btn' style="text-align: center; line-height: 15px;">
+                    <div class="icon  "></div>
+                    S
+                </div>
+            </div>
+
+
+            <div class="btnArea type-X lungNodeExpand" type="2" title="X光胸片">
+                <div class='btn' style="text-align: center; line-height: 15px;">
+                    <div class="icon  "></div>
+                    X
+                </div>
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script id="studyDateTimeTemp" type="text/html">
+    <div class="study-time" data-studyDateTime="<%=studyDate%>">
+        <div class="study-time-txt"><%=studyDateTime%>
+        </div>
+        <div class="study-des-txt"><%=studyDescribe%>
+        </div>
+    </div>
+</script>
+
+<script id="studyPreviewTemp" type="text/html">
+    <div class="study-scan">
+        <div class="patient-scan" data-studyId="<%=studyId%>">
+            <div class="study-title">
+                <div class="left js-dragStdToCanv">
+                    <div class="patient-name js-dragStdToCanv" title='<%=patientName %>'
+                         style="overflow: hidden; text-overflow:ellipsis; white-space: nowrap; "> <%=shortName%>
+                    </div>
+                    <div class="study-num js-dragStdToCanv" date='<%=studyDate %>'
+                         time='<%=studyTime %>' title='<%=studyDate %> <%=studyTime %>'>
+                        <!--<%=studyDate%>-->
+                    </div>
+                </div>
+                <div class="folder"><i class="fa fa-plus-circle folderOutStudy" style="display: none"
+                                       aria-hidden="true"></i><i class="fa fa-minus-circle folderInStudy"
+                                                                 aria-hidden="true"></i></div>
+                <div class="download" title="下载当前检查">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </div>
+                <div class="close-study" title="关闭当前检查"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="viewWrapperTemp" type="text/html">
+    <div class="viewWrapper" id='<%=id %>' no="<%=no %>" unselectable="on" onselectstart="return false;">
+
+        <div id="<%=eid %>" class="viewport ui-droppable"
+             style="touch-action: none; -webkit-user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        </div>
+
+
+        <div class="overlay js-lt" style="top:5px; left:5px;font-size: 4px">
+            <div>
+
+                <span class="js-info js-info-SeNo"></span>
+                <span class="js-info js-info-nowNo"></span>
+                <span class="js-info js-info-totalNo"></span>
+
+            </div>
+
+            <div class="js-info js-info-InstitutionName"></div>
+            <div class="js-info js-info-PatientName"></div>
+            <div class="js-info js-info-PatientID"></div>
+            <div><span class="js-info js-info-PatientSex"> </span></div>
+            <div><span class="js-info js-info-PatientAge"> </span></div>
+
+
+            <div class="js-info js-info-PatientBirthDate"></div>
+
+
+            <div class="js-info js-info-mA"></div>
+            <div class="js-info js-info-kvp"></div>
+
+            <label class="checkbox-inline js-sign" style="pointer-events: all">
+                <input type="checkbox" class="js-signInput" name="isSign" style="display: none;">
+                <!--标记-->
+            </label>
+
+
+        </div>
+        <div class="overlay js-lb" style="bottom:5px; left:5px">
+            <div class="js-info js-info-MagneticFieldStrength"></div>
+            <div class="js-info js-info-TrTe"></div>
+            <div class="js-info js-info-CBZ"></div>
+            <div class="js-info js-info-fov"></div>
+            <div class="js-info js-info-wwwc"></div>
+            <div class="js-info js-info-tl"></div>
+        </div>
+        <div class="overlay js-rt" style="top:5px; right:5px;text-align: right;  ">
+
+        </div>
+        <div class="overlay js-rb" style="bottom:5px; right:5px;text-align: right">
+            <div class="js-info js-info-Modality"></div>
+            <div class="js-info  js-info-BodyPartExamined"></div>
+            <div class="js-info js-info-StudyDescription"></div>
+            <div class="js-info js-info-SeriesDescription"></div>
+            <div class="js-info js-info-Datetime"></div>
+        </div>
+    </div>
+</script>
+
+
+<script id="studyTemp" type="text/html">
+    <div class="study js-imageViewer" id='<%=studyId %>' no="<%=studyNo %>" oncontextmenu="return false;">
+    </div>
+</script>
+
+<template id="jpgPrintTemp" type="text/html">
+
+    <style>
+        .infoBox {
+
+            width: 40%;
+            height: 100%;
+            float: left;
+
+        }
+
+        .infoBox .info {
+            height: 7mm;
+            width: 100%;
+            float: left;
+            text-align: left;
+
+        }
+
+        .infoBox .info .infoName {
+            text-align: center;
+            float: left;
+        }
+
+        .infoBox .info .infoVal {
+            text-align: center;
+            float: left;
+        }
+
+
+    </style>
+    <div class="film   <%=paperSet%>" style=" padding: 30mm 0 0  0;">
+        <div class="header" style="width: 100%;height: 30mm;">
+            <div class="box" style="width:60%;height: 100%;float: left;padding: 6mm;">
+                <img class="logo" src="<%=logoPath%>" style="width: auto;height: 100%">
+                <!--                <span class="name"> header  </span>-->
+                <!--                <span>444444</span>-->
+
+            </div>
+            <div class="infoBox">
+                <div class="info">
+                    <span class="infoName">住院\门诊号：</span>
+                    <span class="infoVal">{{labelNumber}}</span>
+                </div>
+                <div class="info">
+                    <span>姓名：</span>
+                    <span>{{name}}</span>
+                </div>
+                <div class="info">
+                    <span>性别：</span>
+                    <span>{{gender}}</span>
+                    <span style="margin-left: 2mm">年龄：</span>
+                    <span>{{age}}</span></div>
+                <!--                <div class="info"><span>年龄：</span><span>1145565</span></div>-->
+
+            </div>
+        </div>
+        <img class="filmImg" src="<%=imgData%>">
+        <div class="footer" style="display: none; height: 0">
+            <span class="txt"> <%=addr%></span>
+            <span class="txt"> <%=tele%></span>
+        </div>
+    </div>
+</template>
+
+<template id="jpgPrintTempAqier" type="text/html">
+
+    <style>
+        .header {
+            top: 30mm;
+            left: 30mm;
+        }
+
+        .infoBox {
+
+            width: 40%;
+            height: 100%;
+            float: left;
+
+        }
+
+        .infoBox .info {
+            height: 7mm;
+            width: 100%;
+            float: left;
+            text-align: left;
+
+        }
+
+        .infoBox .info .infoName {
+            text-align: center;
+            float: left;
+        }
+
+        .infoBox .info .infoVal {
+            text-align: center;
+            float: left;
+        }
+
+
+    </style>
+    <div class="film   <%=paperSet%>" style=" padding: 50mm 0 0  0;  width: 148mm; height: 269mm">
+        <div class="header" style="width: 100%;height: 30mm; top: 10mm; left: 0mm;">
+            <div class="box" style="width:60%;height: 100%;float: left;padding: 6mm;">
+                <img class="logo" src="<%=logoPath%>" style="width: auto;height: 100%">
+                <!--                <span class="name"> header  </span>-->
+                <!--                <span>444444</span>-->
+
+            </div>
+            <div class="infoBox">
+                <div class="info">
+                    <span class="infoName">住院\门诊号：</span>
+                    <span class="infoVal">{{labelNumber}}</span>
+                </div>
+                <div class="info">
+                    <span>姓名：</span>
+                    <span>{{name}}</span>
+                </div>
+                <div class="info">
+                    <span>性别：</span>
+                    <span>{{gender}}</span>
+                    <span style="margin-left: 2mm">年龄：</span>
+                    <span>{{age}}</span></div>
+                <!--                <div class="info"><span>年龄：</span><span>1145565</span></div>-->
+
+            </div>
+        </div>
+        <img class="filmImg" src="<%=imgData%>" style="width: 148mm; height: 209mm">
+        <div class="footer" style="display: none; height: 0">
+            <span class="txt"> <%=addr%></span>
+            <span class="txt"> <%=tele%></span>
+        </div>
+    </div>
+</template>
+
+<template id="paperTemp" type="text/html">
+    <div class="paper-type">
+        <input type="radio" class="paper-type-radio  radio"
+               name="paperType"
+               value='<%=paperType %>'/>
+        <label>{{paperType}}</label>
+    </div>
+</template>
+<!--胶片 unit 模板-->
+<script id="unitBoxTemp" type="text/html">
+    <% _styleUnit="width:"+100/unitCol+"%;height:"+100/unitRow+"%;"%>
+    <div class="unit" id="<%=id%>" rows="<%=rows%>" cols="<%=cols%>" style={{_styleUnit}}>
+        <%for(var c=0;c< cells.length;c++){%>
+        <% _styleCell="width:"+100/cols+"%;height:"+100/rows+"%;"%>
+        <% cellId=guid(8, 'unit')%>
+        <div class="cell" id={{cellId}} rows="<%=cells[c].rows%>" cols="<%=cells[c].cols%>" style={{_styleCell}}>
+            <%for(var i=0;i< cells[c].rows * cells[c].cols;i++){%>
+            <% _styleAtom="width:"+100/cells[c].cols+"%;height:"+100/cells[c].rows+"%;"%>
+            <% atomId=guid(8, 'atom')%>
+            <div class="atom" id={{atomId}} style={{_styleAtom}} data-print-isFill="false">
+
+            </div>
+            <%}%>
+        </div>
+        <%}%>
+    </div>
+</script>
+
+
+<script id="clipTemp" type="text/html">
+    <% _styleAtom="width:"+width+"px;height:"+height+"px;"%>
+
+    <div id="<%=id%>" style= {{_styleAtom}} >
+
+    </div>
+</script>
+
+
+<!--胶片 atom 模板-->
+<script id="atomInfoTemp" type="text/html">
+
+    <div class="left-top-info info-show">
+        <%for(var i=0;i< ltInfo.length;i++){%>
+        <div class="atom-info {{ltInfo[i]}}"></div>
+        <%}%>
+    </div>
+
+    <div class="left-bottom-info info-show">
+        <%for(var i=0;i< lbInfo.length;i++){%>
+        <div class="atom-info {{lbInfo[i]}}"></div>
+        <%}%>
+    </div>
+
+    <div class="right-top-info info-show">
+        <%for(var i=0;i< rtInfo.length;i++){%>
+        <div class="atom-info {{rtInfo[i]}}"></div>
+        <%}%>
+    </div>
+
+    <div class="right-bottom-info info-show">
+        <%for(var i=0;i< rbInfo.length;i++){%>
+        <div class="atom-info {{rbInfo[i]}}"></div>
+        <%}%>
+    </div>
+</script>
+
+<!--拼接拖入图像模板-->
+<template id="joinImgTemp" type="text/html">
+    <div class="join-img draggable ui-widget-content" id="<%=id%>" studyId="<%=studyId%>" imageId="<%=imageId%>"
+         spacingX="<%=spacingX%>"
+         spacingY="<%=spacingY%>" patientID="<%=patientID%>" studyTime="<%=studyTime%>" modality="<%=modality%>"
+         studyDate="<%=studyDate%>" name="<%=name%>" sex="<%=sex%>" age="<%=age%>" birthDate="<%=birthDate%>"
+         hosName="<%=hosName%>" describe="<%=describe%>" actualW="<%=actualW%>" actualH="<%=actualH%>" W="<%=imgW%>"
+         H="<%=imgH%>">
+        <div class="adjustDiv">
+            <div class="btn join-delete " title="删除"><img src="../img/print/join_delete.png"></div>
+            <div class="btn join-adjust" title="裁剪"><img src="../img/print/join_cut.png"></div>
+        </div>
+    </div>
+
+</template>
+
+
+<!--MPR JS start-->
+
+
+<script type="text/javascript" src="../lib/mpr/base64-binary.js"></script>
+<script type="text/javascript" src="../lib/mpr/bowser.js"></script>
+<script type="text/javascript" src="../lib/mpr/daikon.js"></script>
+<script type="text/javascript" src="../lib/mpr/nifti-reader.js"></script>
+<!--<script type="text/javascript" src="../lib/jquery.js"></script>-->
+<script type="text/javascript" src="../lib/mpr/numerics.js"></script>
+<script type="text/javascript" src="../lib/mpr/pako-inflate.js"></script>
+<script type="text/javascript" src="../lib/mpr/gl-matrix.js"></script>
+<script type="text/javascript" src="../lib/mpr/gifti-reader.js"></script>
+<script type="text/javascript" src="../lib/mpr/GLU.js"></script>
+
+<script type="text/javascript" src="../js/thirdMpr/constants.js"></script>
+
+<script type="text/javascript" src="../js/thirdMpr/utilities/array-utils.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/utilities/math-utils.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/utilities/object-utils.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/utilities/platform-utils.js?v=1.0"></script>
+<script type="text/javascript" src="../js/thirdMpr/utilities/string-utils.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/utilities/url-utils.js"></script>
+
+<script type="text/javascript" src="../js/thirdMpr/core/coordinate.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/core/point.js"></script>
+
+<script type="text/javascript" src="../js/thirdMpr/volume/header.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/imagedata.js?v=1.0"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/imagedescription.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/imagedimensions.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/imagerange.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/imagetype.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/nifti/header-nifti.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/dicom/header-dicom.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/orientation.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/transform.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/volume.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/voxeldimensions.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/volume/voxelvalue.js"></script>
+
+
+<script type="text/javascript" src="../js/thirdMpr/ui/dialog.js?v=1.1"></script>
+<script type="text/javascript" src="../js/thirdMpr/ui/menu.js?v=1.0"></script>
+<script type="text/javascript" src="../js/thirdMpr/ui/menuitem.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/ui/menuitemcheckbox.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/ui/menuitemradiobutton.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/ui/menuitemfilechooser.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/ui/menuitemrange.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/ui/menuitemslider.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/ui/menuitemspacer.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/ui/toolbar.js?v=1.1"></script>
+
+<script type="text/javascript" src="../js/thirdMpr/viewer/atlas.js"></script>
+<script type="text/javascript" src="../js/thirdMpr/viewer/colortable.js"></script>
+
+
+<script src="../js/dist/mpr.min.js"></script>
+
+
+<!--MPR JS end-->
+
+
+<script>
+
+    /*   $(document).ready(function () {
+           var token= GetUrlParam("token");
+           var studyId= GetUrlParam("studyId");
+           // console.log(token,studyId);
+           if ((device.mobile()||device.tablet())) {
+               window.location = "viewer-tab.html?studyId=" + window.btoa(studyId)+"&token="+window.btoa(token);      //移动端页面
+               exit;
+           }
+       });*/
+
+</script>
+
+<script src="./itkVtkViewer.js"></script>
+</body>
+</html>
+

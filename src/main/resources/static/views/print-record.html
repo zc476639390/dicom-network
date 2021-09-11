@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排版打印</title>
+
+    <link rel="stylesheet" href="../css/printRecord/printRecord.css">
+    <link rel="stylesheet" href="../lib/pop-up/pop_up.css">
+
+    <script src="../lib/js/jquery-2.1.4.min.js"></script>
+    <script src="../lib/js/template-web.js"></script>
+    <script src="../config/config.js"></script>
+    <script src="../lib/pop-up/pop_up.js"></script>
+    <script src="../js/dist/printRecord.js"></script>
+
+
+</head>
+<body>
+
+
+<template id="studyListTemp" type="text/html">
+    <div class="study">
+        {{each studyArr study}}
+        <div class="study-box"  data-gender={{study.gender}} data-pointName={{study.pointName}}   data-name={{study.name}}  data-deptName={{study.deptName}} data-num={{study.Num}} data-ageView={{study.ageView}}>
+            <div class="info-box">
+                <div class="item">
+                    <div class="info">类型：{{study.deptName}}</div>
+                    <div class="info">检查号：{{study.Num}}</div>
+                    <div class="info" style="display: none;">{{study.id}}</div>
+                    <div class="info">姓名：{{study.name}}</div>
+                    <div class="info">年龄：{{study.ageView}}</div>
+                    <div class="info">性别：{{study.gender}}</div>
+                    <div class="info">部位：{{study.pointName}}</div>
+                    <div class="info">总数：{{study.iconsDisplay.length}}</div>
+                </div>
+                <div class="item"><input class="study-check" type="checkbox" name="selectAll" value="0"/>全选</div>
+                <div class="item"><input class="study-fold" type="checkbox" name="studyFold" value="0"/>折叠</div>
+            </div>
+            <div class="films-box">
+                {{each study.iconsDisplay filmData}}
+                <div class="film-box" style="color: yellow;" data-detail={{filmData}}>
+                    <div class="film">
+                        <img src={{prefix+filmData.url}} crossOrigin="anonymous" />
+                    </div>
+                    <div class="film-info">
+                        <div class="info-item">
+                            <div class="info">{{filmData.printDirection=='PORTRAIT'?'纵向---':'横向---'}}{{filmData.paperSize}} </div>
+                            <div class="info">排版时间：{{timeChange(filmData.createTime) }} </div>
+                        </div>
+                        <div class="check-btn"><input class="single-check" type="checkbox" name="selectAll" value="0"/></div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</template>
+
+<template id="infoTemp" type="text/html">
+    <div class="item">
+        <div class="item-title">检查信息</div>
+        <div class="info">类型：{{deptName}}</div>
+        <div class="info">检查号：{{num}}</div>
+        <div class="info">姓名：{{name}}</div>
+        <div class="info">年龄：{{ageView}}</div>
+        <div class="info">性别：{{gender}}</div>
+        <div class="info">部位：{{pointName}}</div>
+    </div>
+
+    <div class="item">
+        <div class="item-title">排版信息</div>
+        <div class="info">纸张类型：{{detail.paperSize}}</div>
+        <div class="info">纸张方向：{{detail.printDirection=='PORTRAIT'?'纵向':'横向'}}</div>
+        <div class="info">排版时间：{{timeChange(detail.createTime) }}</div>
+    </div>
+
+</template>
+<template id="jpgPrintTemp" type="text/html">
+
+    <style>
+        .header {
+            top: 30mm;
+            left: 30mm;
+        }
+
+        .infoBox {
+
+            width: 40%;
+            height: 100%;
+            float: left;
+
+        }
+
+        .infoBox .info {
+            height: 7mm;
+            width: 100%;
+            float: left;
+            text-align: left;
+
+        }
+
+        .infoBox .info .infoName {
+            text-align: center;
+            float: left;
+        }
+
+        .infoBox .info .infoVal {
+            text-align: center;
+            float: left;
+        }
+
+
+    </style>
+    <!--   <div class="film   <%=paperSet%>" style=" padding: 50mm 0 0  0;  width: 148mm; height: 269mm">
+           <div class="header" style="width: 100%;height: 30mm; top: 10mm; left: 0mm;">
+               <div class="box"  style="width:60%;height: 100%;float: left;padding: 6mm;">
+                   <img class="logo" src="<%=logoPath%>" style="width: auto;height: 100%">
+   &lt;!&ndash;                <span class="name"> header  </span>&ndash;&gt;
+   &lt;!&ndash;                <span>444444</span>&ndash;&gt;
+
+               </div>
+               <div class="infoBox" >
+                   <div class="info">
+                       <span class="infoName"  >住院\门诊号：</span>
+                       <span class="infoVal">{{labelNumber}}</span>
+                   </div>
+                   <div class="info">
+                       <span>姓名：</span>
+                       <span>{{name}}</span>
+                   </div>
+                   <div class="info">
+                       <span>性别：</span>
+                       <span>{{gender}}</span>
+                       <span style="margin-left: 2mm">年龄：</span>
+                       <span>{{age}}</span> </div>
+   &lt;!&ndash;                <div class="info"><span>年龄：</span><span>1145565</span></div>&ndash;&gt;
+
+               </div>
+           </div>
+           <img class="filmImg" src="<%=imgData%>" style="width: 148mm; height: 209mm">
+           <div class="footer" style="display: none; height: 0">
+               <span class="txt"> <%=addr%></span>
+               <span class="txt"> <%=tele%></span>
+           </div>
+       </div>-->
+
+    <div class="film   <%=paperSet%>" style=" padding: 50mm 0 0  0;  width: 148mm; height: 269mm">
+        <div class="header" style="width: 100%;height: 30mm; top: 10mm; left: 0mm;">
+            <div class="box" style="width:60%;height: 100%;float: left;padding: 6mm;">
+                <img class="logo" src="<%=logoPath%>" style="width: auto;height: 100%">
+                <!--                <span class="name"> header  </span>-->
+                <!--                <span>444444</span>-->
+
+            </div>
+            <div class="infoBox">
+                <div class="info">
+                    <span class="infoName">住院\门诊号：</span>
+                    <span class="infoVal">{{labelNumber}}</span>
+                </div>
+                <div class="info">
+                    <span>姓名：</span>
+                    <span>{{name}}</span>
+                </div>
+                <div class="info">
+                    <span>性别：</span>
+                    <span>{{gender}}</span>
+                    <span style="margin-left: 2mm">年龄：</span>
+                    <span>{{age}}</span></div>
+                <!--                <div class="info"><span>年龄：</span><span>1145565</span></div>-->
+
+            </div>
+        </div>
+        <img class="filmImg" src="<%=imgData%>">
+        <div class="footer" style="display: none; height: 0">
+            <span class="txt"> <%=addr%></span>
+            <span class="txt"> <%=tele%></span>
+        </div>
+    </div>
+</template>
+
+
+<div class="tool-box">
+
+
+    <div class="tool-display"  >
+
+        <input type="radio" class="display-radio" name="display-way" data-select="film-box"
+               data-value="show-all" checked/>
+        <div class="display-name">显示所有项</div>
+
+    </div>
+    <div class="tool-display"  >
+
+        <input type="radio" class="display-radio" name="display-way" data-select="film-box-check"
+               data-value="show-select" />
+        <div class="display-name">仅显示选中项</div>
+
+    </div>
+
+
+
+    <div class="tool"><div class="tool-btn" id="printSure">打印</div></div>
+    <div class="tool"><div  class="tool-printer">
+        <span class="item-name">打印机：</span>
+        <select class="printer-select"  >
+         <!--   <option data-id="localPrinter" data-name="localPrinter" data-ip="localPrinter"
+                    data-AET="localPrinter" data-AETLocal="localPrinter"
+                    data-Port="localPrinter"
+                    data-Position=" localPrinter" data-Type="localPrinter"
+                    data-Priority="localPrinter" data-magnifyType="localPrinter"
+                    data-Color="localPrinter">localPrinter
+            </option>-->
+        </select>
+    </div></div>
+
+
+    <div class="tool"><div class="tool-txt">当前选中 <span class="page-total"> 0 </span> 页</div></div>
+
+
+
+</div>
+<div class="container">
+
+</div>
+<div class="magnify-box">
+
+    <div class="magnify">
+        <div class="tools">
+            <div class="close">返回</div>
+        </div>
+        <div class="info-box">
+
+        </div>
+        <div class="img-box">
+                <img class="magnify-img" src=""/>
+        </div>
+    </div>
+    <div class="film-draw-temp">
+        <canvas id="draw-temp"></canvas>
+    </div>
+
+
+</div>
+<template id="printerVerifyTemp" type="text/html">
+
+    <div class="ceil-box">
+        <div class="info-item"><span class="item-name">打印总页数:<i></i></span> <span
+                class="item-value verify-print-pages">{{ totalPage}}</span></div>
+        <div class="info-item"><span class="item-name">打印机名称:<i></i></span> <span
+                class="item-value verify-name">{{ printer}}</span></div>
+        <div class="info-item  printer-state-item"><span class="item-name">打印机状态:<i></i></span> <span
+                class="item-value printer-state">{{printerState}}</span>
+
+            <div class="item-opt"><div class="item-update">刷新</div>
+                <div class="item-retry">重试</div></div>
+        </div>
+
+
+    </div>
+</template>
+<div class="verify-box">
+
+    <div class="print-verify">
+        <div class="verify">
+            <div class="top-box">
+                <div class="set-title"><span>打印信息</span></div>
+                <div class="close" onclick="$('.verify-box').hide();"><img
+                        src="../img/common/close.png">
+                </div>
+            </div>
+            <div class="info-box"></div>
+            <div class="bottom-box">
+                <div class="btn" id="printVerify" onclick="$('.verify-box').hide();">确认</div>
+                <div class="btn" id="printCancel" onclick="$('.verify-box').hide();">取消
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+
+</script>
+</body>
+</html>

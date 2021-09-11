@@ -1,0 +1,3156 @@
+@font-face {
+  font-family: pictos;
+  src: url('../../lib/fonts/PingFang Light.ttf');
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+.main-container {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .load-alert {
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+}
+.main-container .cointainer-box .load-tips-box {
+  display: none;
+  opacity: 0.8;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #344153;
+  height: 200px;
+  overflow-y: auto;
+}
+.main-container .cointainer-box .load-tips-box .close-load-tips {
+  float: right;
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+}
+.main-container .cointainer-box .load-tips-box .close-load-tips:hover {
+  background-color: #86A3C7;
+}
+.main-container .cointainer-box .load-tips-box .load-tip-box {
+  display: none;
+  padding: 5px;
+  width: 100%;
+  background-color: #293240;
+  margin-top: 30px;
+}
+.main-container .cointainer-box .load-tips-box .load-tip-box .classify {
+  padding-left: 10px;
+  width: 100%;
+  text-align: left;
+}
+.main-container .cointainer-box .load-tips-box .load-tip-box .item-box {
+  width: 100%;
+  padding-left: 100px;
+}
+.main-container .cointainer-box .load-tips-box .load-tip-box .item-box .item {
+  width: 100%;
+  height: 20px;
+  margin: 1px;
+}
+.main-container .cointainer-box .load-tips-box .load-tip-box .item-box .item .txt,
+.main-container .cointainer-box .load-tips-box .load-tip-box .item-box .item .val,
+.main-container .cointainer-box .load-tips-box .load-tip-box .item-box .item .unlock-state,
+.main-container .cointainer-box .load-tips-box .load-tip-box .item-box .item .unlock {
+  float: left;
+  margin-right: 10px;
+}
+.main-container .cointainer-box .load-tips-box .load-tip-box .item-box .item .unlock {
+  width: 50px;
+  text-align: center;
+  background-color: #4D5A6B;
+  float: left;
+}
+.main-container .cointainer-box .load-tips-box .load-tip-box .item-box .item .unlock:hover {
+  background-color: #0090FD;
+}
+.main-container .cointainer-box .left-box {
+  background-color: gray;
+  float: left;
+  width: 175px;
+  height: 100%;
+}
+.main-container .cointainer-box .left-box .logo-box {
+  text-align: center;
+  width: 100%;
+  font-size: 14px;
+  line-height: 0px;
+  height: 0px;
+  background-color: #32bc98;
+}
+.main-container .cointainer-box .left-box .thumbnail-box {
+  float: left;
+  width: 140px;
+  height: calc(100% -  0px);
+  background-color: black;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.main-container .cointainer-box .left-box .thumbnail-box::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box::-webkit-scrollbar-thumb {
+  background: #42A0D6;
+  border-radius: 4px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan {
+  height: auto;
+  position: relative;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box {
+  height: 160px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan {
+  height: 160px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan::-webkit-scrollbar-thumb {
+  background: #8c8686;
+  border-radius: 4px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan .load-state {
+  z-index: 1;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 5px;
+  line-height: 25px;
+  font-size: 10px;
+  float: left;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan .load-state .load-count {
+  float: left;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan .load-state .total {
+  float: left;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan .instance-scan {
+  position: relative;
+  margin: 5px auto;
+  border: 1px solid #8D9192;
+  width: 130px;
+  height: 130px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan .instance-scan .img {
+  height: 100%;
+  width: 100%;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan .instance-scan:hover {
+  border: 1px solid #0090FD;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .patient-scan .series-scan-box .series-scan .instance-scan-check {
+  border: 1px solid #0090FD;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-title {
+  background-color: #344153;
+  color: white;
+  position: relative;
+  display: block;
+  width: 140px;
+  height: 50px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-title .left {
+  float: left;
+  width: 80px;
+  height: 100%;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-title .left .patient-name {
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 12px !important;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-title .left .study-num {
+  display: none;
+  height: 20px;
+  width: 100%;
+  line-height: 20px;
+  font-size: 12px !important;
+  text-align: center;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-title .folder,
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-title .download {
+  float: right;
+  line-height: 50px;
+  display: block;
+  width: 30px;
+  text-align: center;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-title .folder:hover,
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-title .download:hover {
+  background: #2c2525;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-time {
+  overflow: hidden;
+  background-color: #000000;
+  text-align: center;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-time .study-time-txt {
+  argin-top: 10px;
+  margin-left: 5px;
+  color: #e4ad00;
+  font-size: 10px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .study-time .study-des-txt {
+  argin-top: 10px;
+  margin-left: 5px;
+  color: #e4ad00;
+  font-size: 10px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title {
+  background-color: #344153;
+  color: white;
+  position: relative;
+  display: block;
+  width: 140px;
+  height: 25px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title .series-info {
+  line-height: 25px;
+  font-size: 10px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title .series-info .series-num {
+  float: left;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title .series-info .series-des {
+  float: left;
+  padding-left: 5px;
+  text-align: left;
+  width: 55% ;
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title .series-shrink,
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title .series-download {
+  text-align: center;
+  line-height: 25px;
+  float: right;
+  width: 20%;
+  background-color: #344153;
+  height: 25px;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title .series-shrink:hover,
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title .series-download:hover {
+  background-color: dimgrey;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title .forbid-download {
+  cursor: not-allowed;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .series-title .total {
+  line-height: 25px;
+  font-size: 10px;
+  float: left;
+}
+.main-container .cointainer-box .left-box .thumbnail-box .study-scan .jpg-series-title {
+  color: yellow;
+}
+.main-container .cointainer-box .left-box .measure-tool-box {
+  float: right;
+  width: 35px;
+  height: calc(100% -  0px);
+  background-color: #293240;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-container .cointainer-box .left-box .measure-tool-box .tools {
+  width: 100%;
+  height: auto;
+}
+.main-container .cointainer-box .left-box .measure-tool-box .tools .left-line {
+  display: inline-block;
+  margin-top: 5px;
+  float: left;
+  width: 100%;
+  height: 1px;
+  background: #6d6d6d;
+}
+.main-container .cointainer-box .left-box .measure-tool-box .tools .btnArea {
+  display: inline-block;
+  position: relative;
+  touch-action: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  margin-top: 2px;
+  float: left;
+  width: 100%;
+  height: 35px;
+}
+.main-container .cointainer-box .left-box .measure-tool-box .tools .btnArea .fa {
+  color: #CECECE;
+}
+.main-container .cointainer-box .left-box .measure-tool-box .tools .btnArea .btnMask {
+  position: absolute;
+  -moz-opacity: 0.3;
+  opacity: .30;
+  filter: alpha(opacity=30);
+}
+.main-container .cointainer-box .left-box .measure-tool-box .tools .btnArea .btn {
+  line-height: 35px;
+  color: whitesmoke;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 1px !important;
+  width: 100%;
+  height: 100%;
+  float: left;
+  background-color: transparent;
+  position: relative;
+}
+.main-container .cointainer-box .left-box .measure-tool-box .tools .btnArea .btn:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .left-box .measure-tool-box .tools .btnArea .btn .icon {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 31px;
+  height: 20px;
+}
+.main-container .cointainer-box .left-box .measure-tool-box .tools .btnArea .btnActive {
+  background-color: #568199;
+  opacity: 0.9;
+}
+.main-container .cointainer-box .right-box {
+  float: right;
+  width: calc(100% -  175px);
+  height: 100%;
+  background-color: black;
+}
+.main-container .cointainer-box .right-box .main-engine-box {
+  z-index: 2;
+  float: right;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box {
+  background-color: #344153;
+  float: left;
+  width: 100%;
+  height: auto;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool {
+  width: 350px;
+  height: 100%;
+  text-align: center;
+  float: left;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window {
+  background-color: red;
+  color: wheat;
+  margin-top: 5px;
+  margin-right: 10px;
+  position: relative;
+  touch-action: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  float: left;
+  display: block;
+  height: 60px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .fa {
+  color: #CECECE;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .windowInput {
+  outline: none;
+  color: #ffffff !important;
+  width: 40px;
+  text-align: center;
+  font-size: 12px;
+  background-color: #262626;
+  border: 1px solid #000111;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+  display: inline-block;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .windowOK {
+  outline: none;
+  margin-top: 3px;
+  width: 40px;
+  height: 20px;
+  background: #262626;
+  border: 1px solid #000111;
+  font-size: 12px;
+  color: #e6e6e6;
+  position: relative;
+  top: -1px;
+  margin-left: 1px;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+  display: inline-block;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .windowOK:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .windowOK:active {
+  background: #262626;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .btnArea {
+  margin-left: 2px;
+  padding-top: 4px;
+  padding-right: 39px;
+  position: relative;
+  touch-action: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  float: left;
+  display: block;
+  height: 30px;
+  width: 30px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .btnArea .btn {
+  border-radius: 1px !important;
+  padding: 0 0 0 0;
+  height: 30px;
+  width: 30px;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .btnArea .btn:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .btnArea .btn .icon {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 22px;
+  width: 22px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_window .btnArea .btnActive {
+  background-color: #6d6d6d;
+  opacity: 0.9;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_btn {
+  float: left;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_btn .btn {
+  border-radius: 1px !important;
+  width: 45px;
+  height: 45px;
+  float: left;
+  background-color: transparent;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_btn .btn:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fixed-tool .tool_btn .btn .icon {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 35px;
+  width: 35px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  float: left;
+  width: 100%;
+  height: auto;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window {
+  width: 160px;
+  height: 45px;
+  color: wheat;
+  margin-top: 5px;
+  margin-left: 15px;
+  position: relative;
+  touch-action: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  float: left;
+  display: block;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline-block;
+  width: 100%;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .fa {
+  color: #CECECE;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .windowInput {
+  outline: none;
+  color: #ffffff !important;
+  width: 40px;
+  text-align: center;
+  font-size: 12px;
+  background-color: #262626;
+  border: 1px solid #000111;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+  display: inline-block;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .windowOK {
+  outline: none;
+  margin-top: 3px;
+  width: 40px;
+  height: 20px;
+  background: #262626;
+  border: 1px solid #000111;
+  font-size: 12px;
+  color: #e6e6e6;
+  position: relative;
+  top: -1px;
+  margin-left: 1px;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+  display: inline-block;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .windowOK:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .windowOK:active {
+  background: #262626;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .btnArea {
+  margin-left: 2px;
+  padding-right: 39px;
+  position: relative;
+  touch-action: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  float: left;
+  display: block;
+  height: 30px;
+  width: 30px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .btnArea .btn {
+  border-radius: 1px !important;
+  padding: 0 0 0 0;
+  height: 30px;
+  width: 30px;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .btnArea .btn:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .btnArea .btn .icon {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 22px;
+  width: 22px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_window .btnArea .btnActive {
+  background-color: #6d6d6d;
+  opacity: 0.9;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_btn {
+  margin-left: 10px;
+  margin-top: 5px;
+  float: left;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_btn .btn {
+  border-radius: 1px !important;
+  width: 45px;
+  height: 45px;
+  float: left;
+  background-color: transparent;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_btn .btn:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_btn .btn .icon {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30px;
+  width: 30px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .flexible-tool .tool_btn .btnActive {
+  background: #568199;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .top-line {
+  display: none;
+  position: relative;
+  height: 60px;
+  width: 1px;
+  float: left;
+  background: #202020;
+  margin-right: 10px;
+  margin-left: -2px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fake-color-list li {
+  width: 156px;
+  list-style: none;
+  height: 26px;
+  background-color: #1A242C;
+  border: 1px solid #4D5A6B;
+  opacity: 0.9;
+}
+.main-container .cointainer-box .right-box .main-engine-box .top-tool-box .fake-color-list li:hover {
+  background-color: #42A0D6;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box {
+  overflow: hidden;
+  width: 100%;
+  height: calc(100% -  40px);
+  background-color: black;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series {
+  float: left;
+  position: relative;
+  border: 1px solid #4D5A6B;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .playcontrol {
+  padding-right: 5px;
+  padding-left: 5px;
+  background-color: #383838;
+  z-index: 1001;
+  height: 28px;
+  position: absolute;
+  left: 10%;
+  top: 8px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .playcontrol .btnArea {
+  margin-top: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 15%;
+  float: left;
+  pointer-events: auto;
+  position: relative;
+  display: inline-block;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .playcontrol .btnArea .btn {
+  border-radius: 1px !important;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .playcontrol .btnArea .btn .icon {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 14px;
+  height: 14px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .playcontrol .speedTxt {
+  float: left;
+  pointer-events: auto;
+  position: relative;
+  display: inline-block;
+  margin-top: 3px;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 15%;
+  font-size: 12px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .expand {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 100%;
+  height: 30px;
+  z-index: 1;
+  font-size: 10px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .expand .btnArea {
+  float: right;
+  margin-left: 5px;
+  text-align: center;
+  opacity: 0.7;
+  background-color: #000000;
+  width: 30px;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .expand .btnArea .btn {
+  border-radius: 1px !important;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .expand .btnArea .btn:hover {
+  background: #383838;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .expand .btnArea .btn .icon {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .expand .btnArea .btnActive {
+  background-color: #6d6d6d;
+  opacity: 0.9;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .series .expand .lungNodeExpand {
+  display: none;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .seriesCheck {
+  border: 3px dashed #0090FD;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .viewWrapper {
+  border: 1px gray solid;
+  float: left;
+  box-sizing: border-box;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .viewWrapper .overlay {
+  position: absolute;
+  color: #e4ad00;
+  font-size: 12px;
+  pointer-events: none;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .viewWrapper .overlay span,
+.main-container .cointainer-box .right-box .main-engine-box .work-box .viewWrapper .overlay div {
+  pointer-events: none;
+}
+.main-container .cointainer-box .right-box .main-engine-box .work-box .viewport {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .fusion-box {
+  display: none;
+  background: #4D5A6B;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-top-box {
+  height: 46px;
+  width: 100%;
+  float: left;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-top-box .fusion-ctrl-btn {
+  float: right;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-work-box {
+  background-color: black;
+  height: calc(100% -  46px);
+  width: 100%;
+  float: left;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-work-box .fusion-srcs-box {
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-work-box .fusion-srcs-box .src-box {
+  float: left;
+  width: 100%;
+  height: 50%;
+  position: relative;
+  border: 1px solid gray;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-work-box .fusion-result-box {
+  position: relative;
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-work-box .fusion-viewport {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-work-box .fusion-param-box {
+  position: absolute;
+  background-color: #4D5A6B;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 46px;
+  display: flex;
+  align-items: center;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-work-box .fusion-param-box .fusion-param {
+  float: left;
+  width: fit-content;
+  height: fit-content;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-ctrl-btn .btn,
+.main-container .cointainer-box .right-box .fusion-box .fusion-param-box .btn {
+  float: right;
+  border-radius: 1px !important;
+  width: 45px;
+  height: 45px;
+  background-color: transparent;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-ctrl-btn .btn:hover,
+.main-container .cointainer-box .right-box .fusion-box .fusion-param-box .btn:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-ctrl-btn .btn .icon,
+.main-container .cointainer-box .right-box .fusion-box .fusion-param-box .btn .icon {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 35px;
+  width: 35px;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-ctrl-btn .btn .fusion-opacity-box,
+.main-container .cointainer-box .right-box .fusion-box .fusion-param-box .btn .fusion-opacity-box {
+  display: none;
+  position: absolute;
+  bottom: -25px;
+  left: 0px;
+  width: 160px;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-ctrl-btn .btn .fusion-opacity-box input,
+.main-container .cointainer-box .right-box .fusion-box .fusion-param-box .btn .fusion-opacity-box input {
+  width: 130px;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-ctrl-btn .btn .fusion-opacity-box input,
+.main-container .cointainer-box .right-box .fusion-box .fusion-param-box .btn .fusion-opacity-box input,
+.main-container .cointainer-box .right-box .fusion-box .fusion-ctrl-btn .btn .fusion-opacity-box label,
+.main-container .cointainer-box .right-box .fusion-box .fusion-param-box .btn .fusion-opacity-box label {
+  float: left;
+  margin: 1px;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-ctrl-btn .fusion-colormap li,
+.main-container .cointainer-box .right-box .fusion-box .fusion-param-box .fusion-colormap li {
+  color: lightgoldenrodyellow;
+  width: 156px;
+  list-style: none;
+  height: 26px;
+  background-color: #1A242C;
+  border: 1px solid #4D5A6B;
+  opacity: 0.9;
+}
+.main-container .cointainer-box .right-box .fusion-box .fusion-ctrl-btn .fusion-colormap li:hover,
+.main-container .cointainer-box .right-box .fusion-box .fusion-param-box .fusion-colormap li:hover {
+  background-color: #42A0D6;
+}
+.main-container .cointainer-box .right-box .mpr-box {
+  z-index: 1;
+  display: none;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  box-sizing: border-box;
+  background: #000000;
+  text-align: center;
+}
+.main-container .cointainer-box .right-box .mpr-box .papaya-viewer {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .papaya-viewer div,
+.main-container .cointainer-box .right-box .mpr-box .papaya-viewer canvas {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: sans-serif;
+}
+.main-container .cointainer-box .right-box .mpr-box .papaya-viewer canvas {
+  cursor: crosshair;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box {
+  width: 100%;
+  height: 100%;
+  background: #bf4055;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-top-box {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 56px;
+  width: 100%;
+  background-color: #344153;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-top-box .mpr-info-box {
+  float: left;
+  height: 100%;
+  width: 100%;
+  white-space: nowrap;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-top-box .mpr-info-box .mpr-logo {
+  float: left;
+  height: 56px;
+  text-align: center;
+  width: 40px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-top-box .mpr-info-box .mpr-logo img {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-top-box .mpr-info-box .mpr-info-item-box {
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-top-box .mpr-info-box .mpr-info-item-box .mpr-text {
+  float: left;
+  text-align: left;
+  font-size: 14px;
+  line-height: 56px;
+  color: #e4ad00;
+  display: inline-block;
+  width: 100px;
+  margin-right: 5px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-top-box .mpr-info-box .mpr-info-item-box .mpr-text .location-text {
+  color: darkgrey !important;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box {
+  position: relative;
+  background: #201f1f;
+  width: 100%;
+  height: calc(100% -  116px);
+  border: 5px #201f1f solid;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-img-draw-box {
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+  width: 100%;
+  height: 100%;
+  background-color: #201f1f;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-img-draw-box .papaya-viewer {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-img-draw-box .papaya-viewer div,
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-img-draw-box .papaya-viewer canvas {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: sans-serif;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-img-draw-box .papaya-viewer canvas {
+  cursor: crosshair;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateBox {
+  z-index: 4;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 205px;
+  height: 30px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateBox .rotateBtn {
+  float: right;
+  width: 170px;
+  height: 100%;
+  opacity: 0.4;
+  z-index: 5;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateBox .rotateBtn:hover {
+  opacity: 1;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateBox .rotateDirectBtn {
+  float: left;
+  width: 30px;
+  height: 30px;
+  opacity: 0.4;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateBox .rotateDirectBtn img {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateBox .rotateDirectBtn:hover {
+  opacity: 1;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateSliceBox {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 66%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateSliceBox .horizontal {
+  z-index: 5;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: yellow;
+  left: 0px;
+  top: 100px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateSliceBox .horizontal:hover {
+  background-color: green;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateSliceBox .vertical {
+  z-index: 5;
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: red;
+  left: 100px;
+  top: 0px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .rotateSliceBox .vertical:hover {
+  background-color: green;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+  width: 100%;
+  height: 100%;
+  background-color: #2f2d2d;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box {
+  position: relative;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box .max,
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box .min {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  z-index: 9;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box .max img,
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box .min img {
+  margin: 1px;
+  width: 18px;
+  height: 18px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box .mpr-save {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 20px;
+  height: 20px;
+  z-index: 9;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box .mpr-save img {
+  margin: 1px;
+  width: 18px;
+  height: 18px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box .max:hover,
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box .min:hover,
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box .save-mpr:hover {
+  background-color: #42A0D6;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport-box canvas {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-left-box {
+  float: left;
+  width: 66%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-left-box .mpr-axial-wrapper {
+  width: calc(100% -  3px);
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-right-box {
+  float: right;
+  width: 34%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-right-box .mpr-cornoal-wrapper {
+  float: left;
+  width: calc(100% -  2px);
+  height: 50%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-right-box .mpr-sagittal-wrapper {
+  float: left;
+  width: calc(100% - 2px);
+  height: 50%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport {
+  border: 3px #2f2d2d solid;
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .mpr-viewport canvas {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-wrapper-box .mpr-wrappers-container .active {
+  border: 3px #0090FD dashed;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-magnify-box {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  width: calc(100% -  2px);
+  height: calc(100% -  2px);
+  background-color: #00aaff;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-magnify-box .min {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  z-index: 11;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-magnify-box .min img {
+  margin: 1px;
+  width: 18px;
+  height: 18px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-magnify-box .min:hover {
+  background-color: #42A0D6;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-magnify-box .mpr-magnify-viewport-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mpr-magnify-box .mpr-magnify-viewport-wrapper .mpr-magnify-viewport {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-middle-box .mask {
+  background-color: darkgray;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box {
+  width: 100%;
+  height: 60px;
+  background: #344153;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .mpr-tool-box {
+  width: auto;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .mpr-tool-box .btn-box {
+  margin-left: 3px;
+  margin-right: 3px;
+  text-align: center;
+  float: left;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .mpr-tool-box .btn-box .btn-tool {
+  border-radius: 20px;
+  line-height: 40px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  padding: 5px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .mpr-tool-box .btn-box .btn-tool:hover {
+  cursor: pointer;
+  opacity: 1;
+  color: #42A0D6;
+  background-color: #42A0D6;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .mpr-tool-box .btn-box .btn-tool img {
+  width: 30px;
+  height: 30px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .mpr-tool-box .mpr-play-tool {
+  display: none;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .btnBox {
+  white-space: nowrap;
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .btnBox .toolM1 {
+  display: none;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .btnBox .btn {
+  float: left;
+  height: 30px;
+  color: #f5f7f6;
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  margin: 30px 10px 0px 10px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border: 1px #ffffff solid;
+  border-radius: 2px;
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .btnBox .btn:hover {
+  border: 1px #00bc8c solid;
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#00bc8c), to(#11f0c3));
+}
+.main-container .cointainer-box .right-box .mpr-box .mpr-work-box .mpr-bottom-box .btnBox .checked {
+  border: 1px #00bc8c solid;
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#00bc8c), to(#11f0c3));
+}
+.main-container .cointainer-box .right-box .print-join {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .left-img-box {
+  float: left;
+  width: 0px;
+  height: calc(100% -  40px);
+  background-color: palegoldenrod;
+  border: solid 1px black;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.main-container .cointainer-box .right-box .print-join .left-img-box::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .left-img-box::-webkit-scrollbar-thumb {
+  background: #8c8686;
+  border-radius: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .left-img-box::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .left-img-box::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .left-img-box .patient {
+  width: 100%;
+  height: auto;
+  float: left;
+  border: solid 1px lightseagreen;
+}
+.main-container .cointainer-box .right-box .print-join .left-img-box .patient .name {
+  font-size: 12px;
+  width: 100%;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+}
+.main-container .cointainer-box .right-box .print-join .left-img-box .patient .img {
+  background-color: palegoldenrod;
+  width: 100%;
+  height: 100%;
+  border: solid 1px black;
+}
+.main-container .cointainer-box .right-box .print-join .left-img-box .patient .img .unit {
+  background-color: black;
+  border: solid 1px green;
+  width: 100%;
+  height: 100px;
+  float: left;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box {
+  float: left;
+  width: calc(100% -  0px);
+  height: 100%;
+  background-color: #E4E4E4;
+  border: solid 1px black;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-box-mask {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+  background-color: black;
+  opacity: 0.5;
+  text-align: center;
+  color: orangered;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box {
+  float: left;
+  width: calc(100% -  200px);
+  height: 100%;
+  background-color: yellow;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box {
+  float: left;
+  width: 100%;
+  background-color: white;
+  height: calc(100% -  40px);
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box {
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page-box-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: white;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page-print-mask {
+  display: none;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page-print-mask img {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page {
+  z-index: 1;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 500px;
+  background: #282222;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit {
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell {
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom {
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 100%;
+  border: gainsboro 1px solid;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .left-top-info,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .right-top-info,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .left-bottom-info,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .right-bottom-info {
+  pointer-events: none;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .left-top-info {
+  position: absolute;
+  z-index: 2;
+  left: 1px;
+  top: 3px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .left-top-info .atom-info {
+  margin-bottom: 5px;
+  text-align: left;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .right-top-info {
+  position: absolute;
+  z-index: 2;
+  top: 3px;
+  right: 1px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .right-top-info .atom-info {
+  float: right;
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: right;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .left-bottom-info {
+  position: absolute;
+  z-index: 2;
+  left: 1px;
+  bottom: 3px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .left-bottom-info .atom-info {
+  margin-top: 5px;
+  text-align: left;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .right-bottom-info {
+  position: absolute;
+  z-index: 2;
+  right: 1px;
+  bottom: 3px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .right-bottom-info .atom-info {
+  margin-top: 5px;
+  width: 100%;
+  float: right;
+  text-align: right;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom .atom-info {
+  width: 100%;
+  font-size: 10px;
+  color: white;
+  line-height: 10px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page .unit .cell .atom-check {
+  border: #ff0000 1px solid;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .film-content-box .film-page-box .film-page-check {
+  z-index: 3;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .print-title-box {
+  float: left;
+  width: 100%;
+  height: 40px;
+  background-color: #344153;
+  text-align: center;
+  line-height: 40px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .print-title-box .btn-box {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  width: auto;
+  height: 40px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .print-title-box .btn-box .btn {
+  color: yellow;
+  margin-right: 5px;
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  border: solid 1px black;
+  text-align: center;
+  line-height: 30px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-work-box .print-title-box .btn-box .btn:hover {
+  background-color: black;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box {
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: white;
+  float: left;
+  width: 200px;
+  height: 100%;
+  background-color: #293240;
+  padding: 5px 5px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box::-webkit-scrollbar-thumb {
+  background: #8c8686;
+  border-radius: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box {
+  background-color: #344153;
+  margin-bottom: 5px;
+  float: left;
+  padding: 5px;
+  border-radius: 5px;
+  width: 190px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .set-box-title,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .set-box-title,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .set-box-title,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .set-box-title,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .set-box-title {
+  width: 49%;
+  color: #ffffff;
+  float: left;
+  font-size: 14px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .set-btn,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .set-btn,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .set-btn,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .set-btn,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .set-btn {
+  width: 48%;
+  float: right;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .set-btn i,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .set-btn i,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .set-btn i,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .set-btn i,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .set-btn i {
+  font-size: 16px;
+  float: right;
+  margin-right: 3px;
+  cursor: pointer;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context {
+  font-size: 12px;
+  margin-top: 10px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .paper-set,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .paper-set,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .paper-set,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .paper-set,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .paper-set {
+  width: 113px;
+  margin-bottom: 9px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .film-layout,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .film-layout,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .film-layout,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .film-layout,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .film-layout {
+  width: 100% !important;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .film-layout,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .film-layout,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .film-layout,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .film-layout,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .film-layout,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .split-unit,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .split-unit,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .split-unit,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .split-unit,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .split-unit,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .cancle-split,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .cancle-split,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .cancle-split,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .cancle-split,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .cancle-split {
+  display: inline-block;
+  width: 49%;
+  line-height: 25px;
+  color: #ffffff;
+  margin-bottom: 9px;
+  text-align: center;
+  background-color: #86A3C7;
+  float: left;
+  border-radius: 2px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .film-layout:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .film-layout:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .film-layout:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .film-layout:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .film-layout:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .split-unit:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .split-unit:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .split-unit:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .split-unit:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .split-unit:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .cancle-split:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .cancle-split:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .cancle-split:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .cancle-split:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .cancle-split:hover {
+  background-color: #42A0D6;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .cancle-split,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .cancle-split,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .cancle-split,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .cancle-split,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .cancle-split {
+  width: 49% !important;
+  float: right !important;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .page-toolbar,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .page-toolbar,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .page-toolbar,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .page-toolbar,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .page-toolbar {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .page-toolbar .fa,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .page-toolbar .fa,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .page-toolbar .fa,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .page-toolbar .fa,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .page-toolbar .fa {
+  font-size: 12px;
+  padding: 5px 5.1px;
+  cursor: pointer;
+  border-radius: 2px;
+  background-color: #86A3C7;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .page-toolbar .fa:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .page-toolbar .fa:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .page-toolbar .fa:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .page-toolbar .fa:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .page-toolbar .fa:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .film-set-context .page-toolbar input,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .control-tool-box .film-set-context .page-toolbar input,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .film-set-context .page-toolbar input,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .film-set-context .page-toolbar input,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .film-set-context .page-toolbar input {
+  width: 30px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box {
+  font-size: 12px;
+  overflow: hidden;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box select {
+  width: 100%;
+  float: left;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .inputContent {
+  float: left;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .inputContent input {
+  width: 93px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .inputBtnBox {
+  float: left;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .inputBtnBox .inputBtn {
+  color: #000000;
+  position: absolute;
+  width: 20px;
+  height: 12px;
+  line-height: 7px;
+  cursor: pointer;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .inputBtnBox .btn1 {
+  top: 0;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .inputBtnBox .btn2 {
+  top: 12px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .btnAddNum,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .btnPlusNum {
+  text-align: center;
+  width: 22px;
+  height: 19px;
+  line-height: 19px;
+  float: right;
+  border-radius: 2px;
+  color: #0c390e;
+  background-color: #AECAEE;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .btnAddNum:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .btnPlusNum:hover {
+  background: #42A0D6;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .btnAddNum {
+  margin-left: 1px;
+  margin-top: 5px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .inputBox .btnPlusNum {
+  margin-top: 5px;
+  margin-left: 1px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .local-option,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .server-option {
+  border-radius: 2px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  line-height: 25px;
+  padding: 0;
+  background-color: #AECAEE;
+  margin-top: 5px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .local-option:hover,
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .server-option:hover {
+  background-color: #42A0D6;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .server-option {
+  display: none;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .left-option {
+  font-size: 12px;
+  width: 49% !important;
+  float: left;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-set-box .right-option {
+  font-size: 12px;
+  width: 49% !important;
+  float: right;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box {
+  overflow: hidden;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .radio-box {
+  width: 100%;
+  display: block;
+  float: left;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .radio-box .radio {
+  text-align: center;
+  float: left;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .radio-box .radio-name {
+  font-size: 12px;
+  padding: 1px 5px;
+  float: left;
+  margin-top: 2px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .radio-box .proc-radio {
+  float: left;
+  margin-left: 6px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .radio-box .proc-radio label {
+  font-size: 12px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .radio-box .proc-radio input[type="radio"] + label::before {
+  content: "\a0";
+  /*不换行空格*/
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 12px;
+  margin-right: .4em;
+  border-radius: 50%;
+  border: 1px solid #42A0D6;
+  text-indent: .15em;
+  line-height: 1;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .radio-box .proc-radio input[type="radio"]:checked + label::before {
+  background-color: #42A0D6;
+  background-clip: content-box;
+  padding: .2em;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .radio-box .proc-radio input[type="radio"] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .input-content select {
+  width: 60px;
+  height: 21px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .input-content input {
+  width: 50px;
+  height: 21px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .tools-icon-box {
+  margin-top: 10px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .tools-icon-box li {
+  width: 40px;
+  height: 40px;
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-bottom: 2px;
+  float: left;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .print-tool-box .direction-label li {
+  width: 40px;
+  height: 40px;
+  margin-left: 1px;
+  margin-right: 1px;
+  float: left;
+  text-align: center;
+  line-height: 41.5px;
+  cursor: pointer;
+  background: -moz-linear-gradient(top, #B5B9C7 0%, #6C6F85 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #B5B9C7), color-stop(100%, #6C6F85));
+  background: -webkit-linear-gradient(top, #B5B9C7 0%, #6C6F85 100%);
+  background: -o-linear-gradient(top, #B5B9C7 0%, #6C6F85 100%);
+  background: -ms-linear-gradient(top, #B5B9C7 0%, #6C6F85 100%);
+  background: linear-gradient(to bottom, #B5B9C7 0%, #6C6F85 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#B5B9C7, endColorstr=#6C6F85, GradientType=0);
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .split-unit {
+  position: relative;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .split-unit .split-ul {
+  padding: 10px 10px 10px 12px;
+  position: absolute;
+  border-radius: 5px;
+  top: 25px;
+  z-index: 999;
+  display: none;
+  left: -25px;
+  width: 200px;
+  background: black;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .split-unit .split-ul li {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  float: left;
+  margin: 2px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .split-unit .split-ul li:hover {
+  background-color: #6493CF;
+  color: white;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .film-set-box .split-unit .split-ul li img {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .print-box .print-control-box .demo-tool-box .demo-tool:hover {
+  background-color: orangered;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box {
+  float: left;
+  width: calc(100% -   46px);
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-title-box {
+  background-color: #344153;
+  width: 100%;
+  height: 40px;
+  z-index: 1;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box {
+  width: 100%;
+  height: calc(100% -   40px);
+  background-color: #dcdcdc;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box::-webkit-scrollbar-thumb {
+  background: #42A0D6;
+  border-radius: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box::-webkit-scrollbar-thumb {
+  background: #42A0D6;
+  border-radius: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box .join-img-box {
+  width: 100%;
+  height: 400%;
+  background-color: #E4E4E4;
+  position: relative;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box .join-img-box .join-img {
+  width: 512px;
+  height: 512px;
+  background-color: #000000;
+  box-sizing: border-box;
+  position: absolute;
+  border: 0px !important;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box .join-img-box .join-img .active {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 10px;
+  top: 10px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box .join-img-box .join-img .active img {
+  width: 18px;
+  height: 18px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box .join-img-box .join-img .adjustDiv {
+  padding: 2px 2px 2px 2px;
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  top: 0;
+  left: 0;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box .join-img-box .join-img .adjustDiv .btn {
+  padding: 10px 10px 10px 10px;
+  float: left;
+  width: 30px;
+  height: 30px;
+  display: none;
+  text-align: center;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box .join-img-box .join-img .adjustDiv .btn img {
+  width: 20px;
+  height: 20px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box .join-img-box .join-img .adjustDiv .btn:hover {
+  cursor: pointer;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .join-cointainer-box .join-img-box .join-img canvas {
+  cursor: move !important;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .cut-img-box {
+  margin: auto;
+  width: 100%;
+  height: 400%;
+  background-color: gainsboro;
+  display: none;
+  z-index: 1;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .cut-img-box .cut-box {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .cut-scan-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-middle-box .join-work-box .join-cut-box .cut-scan-box .join-scan {
+  width: 100%;
+  height: 100%;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box {
+  float: right;
+  overflow: hidden;
+  height: 100%;
+  width: 46px;
+  background-color: #293240;
+  text-align: center;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box .join-cut-tool-box {
+  margin: auto;
+  height: calc(100% -   40px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box .join-cut-tool-box .tool-cut,
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box .join-cut-tool-box .tool-scan {
+  display: none;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box .join-cut-tool-box .tool-join,
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box .join-cut-tool-box .tool-cut,
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box .join-cut-tool-box .tool-scan {
+  width: 100%;
+  height: auto;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box .join-cut-tool-box .cut-tool {
+  margin-top: 10px;
+  margin-left: 3px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: #383838;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box .join-cut-tool-box .cut-tool:hover {
+  background-color: black;
+  cursor: pointer;
+}
+.main-container .cointainer-box .right-box .print-join .print-join-box .join-box .join-tool-box .join-cut-tool-box .cut-tool img {
+  margin-top: 10px;
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+}
+.main-container .cointainer-box .right-box .web3D-box {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #32bc98;
+}
+.main-container .cointainer-box .right-box .web3D-box .web3D-top-box {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 56px;
+  width: 100%;
+  background-color: #344153;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.main-container .cointainer-box .right-box .web3D-box .web3D-container {
+  position: relative;
+  background: #201f1f;
+  width: 100%;
+  height: calc(100% -  56px);
+  border: 5px #201f1f solid;
+}
+.main-container .cointainer-box .back-to-viewer {
+  width: 100%;
+  border-radius: 2px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.main-container .cointainer-box .back-to-viewer i {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 40px;
+}
+.main-container .cointainer-box .back-to-viewer i:hover {
+  color: #42A0D6 !important;
+}
+.main-container .cointainer-box .mpr-close-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 40px;
+}
+.main-container .cointainer-box .back-in-print {
+  line-height: 20px !important;
+  height: 18px !important;
+}
+.main-container .common-mask {
+  display: none;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+}
+.main-container .common-pop-up-box {
+  display: none;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+  width: 100%;
+  height: 100%;
+}
+.main-container .common-pop-up-box .print-magnify-box,
+.main-container .common-pop-up-box .film-layout-box,
+.main-container .common-pop-up-box .engine-sets-box,
+.main-container .common-pop-up-box .wwwc-box,
+.main-container .common-pop-up-box .wwwc-set-box,
+.main-container .common-pop-up-box .filter-box,
+.main-container .common-pop-up-box .printer-set-box,
+.main-container .common-pop-up-box .printer-list-box,
+.main-container .common-pop-up-box .tag-set-box,
+.main-container .common-pop-up-box .jpg-view-box,
+.main-container .common-pop-up-box .download-box,
+.main-container .common-pop-up-box .common-download-box,
+.main-container .common-pop-up-box .print-local-verify-box,
+.main-container .common-pop-up-box .print-server-verify-box {
+  background-color: #344153;
+  position: relative;
+}
+.main-container .common-pop-up-box .download-box,
+.main-container .common-pop-up-box .common-download-box {
+  display: none;
+  width: 377px;
+  height: 230px;
+}
+.main-container .common-pop-up-box .download-box .ceilBox,
+.main-container .common-pop-up-box .common-download-box .ceilBox {
+  padding: 20px 0px;
+}
+.main-container .common-pop-up-box .download-box .ceilBox ul li,
+.main-container .common-pop-up-box .common-download-box .ceilBox ul li {
+  width: 100%;
+  height: 40px;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  background-color: #86A3C7;
+}
+.main-container .common-pop-up-box .download-box .ceilBox ul li:hover,
+.main-container .common-pop-up-box .common-download-box .ceilBox ul li:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .print-magnify-box {
+  width: 750px;
+  height: 600px;
+}
+.main-container .common-pop-up-box .print-magnify-box .magnify-tool-box {
+  width: 100%;
+  height: 45px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-container .common-pop-up-box .print-magnify-box .magnify-tool-box li {
+  float: left;
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.main-container .common-pop-up-box .print-magnify-box .ceilBox {
+  width: 100%;
+  height: 501px;
+  background-color: lightseagreen;
+}
+.main-container .common-pop-up-box .print-magnify-box .annotationDialog,
+.main-container .common-pop-up-box .print-magnify-box .relabelDialog {
+  z-index: 1000;
+  position: absolute;
+  margin: 0px;
+  left: 40%;
+  top: 40%;
+  width: 300px;
+  border: 1px black solid;
+  border-radius: 5px;
+}
+.main-container .common-pop-up-box .print-magnify-box .annotationTextInputOptions {
+  padding: 5px 0px;
+}
+.main-container .common-pop-up-box .print-magnify-box .annotationTextInput {
+  margin-left: 5px;
+}
+.main-container .common-pop-up-box .print-magnify-box .annotationDialogConfirm {
+  float: right;
+}
+.main-container .common-pop-up-box .film-layout-box {
+  display: none;
+  width: 320px !important;
+  height: 320px;
+}
+.main-container .common-pop-up-box .film-layout-box .layout-handler {
+  width: 100%;
+  height: 35px;
+}
+.main-container .common-pop-up-box .film-layout-box .layout-handler .layout-title {
+  line-height: 35px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  cursor: move;
+}
+.main-container .common-pop-up-box .film-layout-box .layout-handler .layout-close {
+  line-height: 35px;
+  position: absolute;
+  right: 5px;
+  top: 0;
+  cursor: pointer;
+}
+.main-container .common-pop-up-box .film-layout-box .layout-handler .layout-close:hover {
+  color: #42A0D6;
+}
+.main-container .common-pop-up-box .film-layout-box .layout-select-box {
+  width: 100%;
+  height: 250px;
+  padding-left: 20px;
+  padding-right: 0px;
+  padding-top: 10px;
+}
+.main-container .common-pop-up-box .film-layout-box .layout-select-box li {
+  float: left;
+  width: 100px;
+}
+.main-container .common-pop-up-box .film-layout-box .layout-result-box {
+  height: 35px;
+  width: 100%;
+}
+.main-container .common-pop-up-box .film-layout-box .layout-result-box .result {
+  text-align: center;
+  line-height: 35px;
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.main-container .common-pop-up-box .film-layout-box .layout-result-box .result:hover {
+  background-color: dimgrey;
+}
+.main-container .common-pop-up-box .engine-sets-box {
+  display: none;
+  width: 377px;
+  height: 230px;
+}
+.main-container .common-pop-up-box .engine-sets-box .set-box {
+  float: left;
+  width: 100%;
+  height: 175px;
+  align-items: center;
+}
+.main-container .common-pop-up-box .engine-sets-box .set-box .item-set-box {
+  width: 100%;
+  height: 100px;
+  float: left;
+}
+.main-container .common-pop-up-box .engine-sets-box .set-box .item-set-box .item-box {
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 8px;
+  height: 30px;
+}
+.main-container .common-pop-up-box .engine-sets-box .set-box .item-set-box .item-box .item {
+  float: left;
+  width: 80px;
+}
+.main-container .common-pop-up-box .engine-sets-box .set-box .item-set-box .item-box .item input {
+  margin-left: 10px;
+}
+.main-container .common-pop-up-box .engine-sets-box .set-box .item-set-box .set-btn {
+  float: left;
+  height: 30px;
+}
+.main-container .common-pop-up-box .engine-sets-box .set-box .item-set-box .set-btn .icon {
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 22px;
+  width: 22px;
+}
+.main-container .common-pop-up-box .engine-sets-box .set-box .item-set-box .item-classify {
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 8px;
+  height: 30px;
+}
+.main-container .common-pop-up-box .jpg-view-box {
+  background-color: #344153;
+  margin: auto;
+  width: 600px;
+  height: 637px;
+  display: none;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-info-box {
+  background-color: #4D5A6B;
+  height: 32px;
+  width: 100%;
+  padding: 5px 20px;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-info-box .item {
+  width: auto;
+  float: left;
+  margin-right: 30px;
+}
+.main-container .common-pop-up-box .jpg-view-box .ceilBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 20px;
+  height: 450px;
+  color: white;
+  position: relative;
+}
+.main-container .common-pop-up-box .jpg-view-box .ceilBox img {
+  max-width: 560px;
+  max-height: 410px;
+  width: auto;
+  height: auto;
+}
+.main-container .common-pop-up-box .jpg-view-box .ceilBox .download-single-jpg {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 12px;
+}
+.main-container .common-pop-up-box .jpg-view-box .ceilBox .download-single-jpg:hover {
+  background-color: #4D5A6B;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-scan-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: solid 15px #344153;
+  border-left: solid 20px #344153;
+  background-color: #4D5A6B;
+  height: 90px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 10px 5px;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-scan-box::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-scan-box::-webkit-scrollbar-thumb {
+  background: #42A0D6;
+  border-radius: 4px;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-scan-box::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-scan-box::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-scan-box .scan-box {
+  white-space: nowrap;
+  overflow: hidden;
+  height: 70px;
+  width: fit-content;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-scan-box .scan-box .jpg-box {
+  border: 1px #344153 solid;
+  margin-left: 5px;
+  overflow: hidden;
+  display: inline-block;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-scan-box .scan-box .jpg-box img {
+  width: 68px;
+  height: 68px;
+}
+.main-container .common-pop-up-box .jpg-view-box .jpg-scan-box .scan-box .jpg-box-check {
+  border: 1px #42A0D6 solid;
+}
+.main-container .common-pop-up-box .wwwc-box {
+  margin: auto;
+  width: 377px;
+  height: 410px;
+  display: none;
+  color: black;
+}
+.main-container .common-pop-up-box .wwwc-box .device-box {
+  width: 100%;
+  height: 38px;
+  float: right;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  color: white;
+}
+.main-container .common-pop-up-box .wwwc-box .device-box .device {
+  width: 200px;
+  height: 28px;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox {
+  color: white;
+  height: 308px;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne {
+  margin-top: 10px;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2Box {
+  height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2Box::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2Box::-webkit-scrollbar-thumb {
+  background: #42A0D6;
+  border-radius: 4px;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2Box::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2Box::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1-1 {
+  width: 100%;
+  border-spacing: 0;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1 thead tr th,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2 thead tr th,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1-1 thead tr th {
+  width: 25%;
+  height: 25px;
+  border: 0.1em dashed #333;
+  font-weight: normal;
+  text-align: center;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1 tbody tr td,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2 tbody tr td,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1-1 tbody tr td {
+  width: 25%;
+  text-align: center;
+  height: 30px !important;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1 tbody tr:hover,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2 tbody tr:hover,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1-1 tbody tr:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1 tbody .wwwc-item-check,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table2 tbody .wwwc-item-check,
+.main-container .common-pop-up-box .wwwc-box .ceilBox .tableOne .table1-1 tbody .wwwc-item-check {
+  background-color: #ccdbef;
+}
+.main-container .common-pop-up-box .wwwc-set-box {
+  margin: auto;
+  display: none;
+  height: 210px;
+  width: 377px;
+  z-index: 31;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox {
+  height: 120px;
+  color: white;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .device-name-box {
+  width: 100%;
+  float: left;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .device-name-box .device-box,
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .device-name-box .name-box {
+  width: 50%;
+  float: left;
+  height: 24px;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .device-name-box .device-box {
+  padding-left: 20px;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .device-name-box .device-box .device1 {
+  width: 110px;
+  height: 24px;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .device-name-box .name-box {
+  padding-left: 8px;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .device-name-box .name-box .modifyName {
+  width: 110px;
+  height: 24px;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .inputBox {
+  float: left;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 20px;
+  overflow: hidden;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .inputBox .inputContent {
+  float: left;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .inputBox .inputContent input {
+  width: 230px;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .inputBox .inputBtnBox {
+  float: left;
+  width: 60px;
+  height: 30px;
+  position: relative;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .inputBox .inputBtnBox .inputBtn {
+  color: #000000;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  cursor: pointer;
+  float: right;
+  padding-top: 6px;
+  padding-left: 6px;
+  margin-left: 5px;
+  background-color: powderblue;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .inputBox .inputBtnBox .inputBtn img {
+  width: 10px;
+  height: 10px;
+}
+.main-container .common-pop-up-box .wwwc-set-box .ceilBox .inputBox .inputBtnBox .inputBtn:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .filter-box {
+  margin: auto;
+  height: 300px;
+  width: 400px;
+  display: none;
+}
+.main-container .common-pop-up-box .filter-box .ceilBox {
+  height: 209px;
+  padding: 50px 30px !important;
+}
+.main-container .common-pop-up-box .filter-box .ceilBox .ceilBoxDiv {
+  height: 30px;
+}
+.main-container .common-pop-up-box .filter-box .ceilBox .ceilBoxDiv input {
+  width: 100px;
+}
+.main-container .common-pop-up-box .printer-set-box {
+  margin: auto;
+  height: 520px;
+  width: 480px;
+  display: none;
+  z-index: 31 !important;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox {
+  height: 367px !important;
+  color: white !important;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .title,
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-name-box,
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-param-box,
+.main-container .common-pop-up-box .printer-set-box .ceilBox .film-param-box {
+  padding: 10px 0px 0px 20px;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-name-box {
+  width: 100%;
+  float: left;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-name-box .printer-item {
+  width: 50%;
+  float: left;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-name-box .printer-item span,
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-name-box .printer-item select,
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-name-box .printer-item input {
+  float: left;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-name-box .printer-item input {
+  width: 50%;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-name-box .printer-item select {
+  height: 24px;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .printer-param-box {
+  background-color: #374355;
+  height: 195px;
+  width: 100%;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .film-param-box {
+  background-color: #293240;
+  height: 141px;
+  width: 100%;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .param-box {
+  width: 100%;
+  height: 100%;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .param-box .param-item {
+  width: 50%;
+  height: 65px;
+  float: left;
+  padding: 10px 20px 10px 0px;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .param-box .param-item .title {
+  float: left;
+  width: 78px;
+  padding: 0 !important;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .param-box .param-item .param {
+  float: left;
+  width: calc(100% - 78px);
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .param-box .param-item .param-check {
+  width: 100%;
+  height: 66px;
+  padding: 10px 20px 10px 0px;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .param-box .param-item .inputBox {
+  color: #000;
+  background: white;
+  display: inline-flex;
+}
+.main-container .common-pop-up-box .printer-set-box .ceilBox .param-box .param-item .inputBox .ipInput {
+  width: 30px;
+  border: none;
+  text-align: center;
+}
+.main-container .common-pop-up-box .printer-set-box .calBox {
+  text-align: right;
+}
+.main-container .common-pop-up-box .printer-list-box {
+  margin: auto;
+  width: 377px;
+  height: 390px;
+  display: none;
+  z-index: 21;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox {
+  height: 300px !important;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox .leftBox {
+  height: 100%;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox .leftBox ul {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox .leftBox ul::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox .leftBox ul::-webkit-scrollbar-thumb {
+  background: #42A0D6;
+  border-radius: 4px;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox .leftBox ul::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox .leftBox ul::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox .leftBox ul .printer-inner {
+  color: white;
+  padding-left: 10px;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  border: 1px solid #797979;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox .leftBox ul .printer-inner:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .printer-list-box .ceilBox .leftBox ul .printer-inner-check {
+  background-color: #86A3C7;
+}
+.main-container .common-pop-up-box .tag-set-box {
+  position: relative;
+  margin: auto;
+  display: none;
+  width: 750px !important;
+  z-index: 100003 !important;
+  height: 570px !important;
+}
+.main-container .common-pop-up-box .tag-set-box .topbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60px !important;
+  height: 40px !important;
+  background-color: #344153 !important;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox {
+  height: 520px !important;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent {
+  background-color: #4D5A6D;
+  padding: 10px 0;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo {
+  height: 447px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .leftBox,
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox {
+  background-color: #4D5A6D;
+  height: 100%;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .leftBox {
+  width: 20%;
+  float: left;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .leftBox .yes {
+  cursor: pointer;
+  height: 24px;
+  line-height: 24px;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .leftBox .yes:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .leftBox ul {
+  padding-left: 10px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .leftBox ul .tag-item {
+  padding-left: 10px;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .leftBox ul .tag-item:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .leftBox ul .tag-item-check {
+  background-color: #86A3C7;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox {
+  width: 80%;
+  text-align: center;
+  float: right;
+  overflow: hidden;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox .fontDiv {
+  background-color: #344153;
+  width: 47%;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  height: calc(48% -   16px);
+  float: left;
+  margin-bottom: 5%;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox .fontDiv ul {
+  padding: 1%;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox .fontDiv ul li {
+  height: 25px;
+  line-height: 25px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox .fontDiv ul li .pull-right {
+  display: none;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox .fontDiv ul li .pull-right a {
+  float: left;
+  color: white !important;
+  padding: 1px 1px 1px 1px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox .fontDiv ul li .pull-right a:hover {
+  background-color: #86A3C7 !important;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox .fontDiv ul li .pull-right a img {
+  width: 23px;
+  height: 23px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #setInfo .rightBox .fontDiv ul li:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .yes {
+  cursor: pointer;
+  height: 24px;
+  line-height: 24px;
+  display: inline-block;
+  text-align: center;
+  background-color: #918b87;
+  width: 90px;
+  margin-right: 1.5%;
+  color: white;
+  margin-top: 10px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .yes:hover {
+  background-color: #77726e;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .viewImgBox {
+  height: 455px;
+  overflow: hidden;
+  background: gainsboro;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .viewImgBox::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .viewImgBox::-webkit-scrollbar-thumb {
+  background: #42A0D6;
+  border-radius: 4px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .viewImgBox::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .viewImgBox::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .viewImgBox .set-preview {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .viewImgBox .set-preview .preview-win {
+  margin: 10px auto;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont .viewImgBox .set-preview .preview-temp-win {
+  z-index: 1;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent #viewFont select {
+  width: 170px;
+  margin-top: 10px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent ul {
+  color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #344153;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent ul::-webkit-scrollbar {
+  /*滚动条，这里不倒腾用户体验了，暂时在满足webkit，这里主要是想节约空间，其实大可不必通过滚动条*/
+  width: 4px;
+  height: 4px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent ul::-webkit-scrollbar-thumb {
+  background: #42A0D6;
+  border-radius: 4px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent ul::-webkit-scrollbar-track {
+  background: white;
+  width: 4px;
+}
+.main-container .common-pop-up-box .tag-set-box .ceilBox #myTabContent ul::-webkit-scrollbar-button {
+  background-color: white;
+  height: 4px;
+}
+.main-container .common-pop-up-box .tag-set-box .versonText {
+  background-color: #77726e;
+}
+.main-container .common-pop-up-box .print-local-verify-box {
+  margin: auto;
+  width: 377px;
+  height: 390px;
+  display: none;
+  z-index: 21;
+}
+.main-container .common-pop-up-box .print-local-verify-box .ceilBox {
+  padding: 15px;
+  height: 300px !important;
+}
+.main-container .common-pop-up-box .print-local-verify-box .ceilBox .info-item {
+  width: 100%;
+  height: 30px;
+  float: left;
+}
+.main-container .common-pop-up-box .print-local-verify-box .ceilBox .info-item .item-name {
+  float: left;
+  width: 90px;
+  text-align: justify;
+}
+.main-container .common-pop-up-box .print-local-verify-box .ceilBox .info-item .item-name i {
+  display: inline-block;
+  padding-left: 100%;
+  width: 100%;
+}
+.main-container .common-pop-up-box .print-local-verify-box .ceilBox .info-item .item-value {
+  margin-left: 30px;
+  float: left;
+}
+.main-container .common-pop-up-box .print-local-verify-box .ceilBox .info-item .item-update,
+.main-container .common-pop-up-box .print-local-verify-box .ceilBox .info-item .item-retry {
+  margin-left: 30px;
+  float: left;
+  opacity: 0.8;
+}
+.main-container .common-pop-up-box .print-local-verify-box .ceilBox .info-item .item-update:hover,
+.main-container .common-pop-up-box .print-local-verify-box .ceilBox .info-item .item-retry:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .print-server-verify-box {
+  margin: auto;
+  width: 377px;
+  height: 390px;
+  display: none;
+  z-index: 21;
+}
+.main-container .common-pop-up-box .print-server-verify-box .ceilBox {
+  padding: 15px;
+  height: 300px !important;
+}
+.main-container .common-pop-up-box .print-server-verify-box .ceilBox .info-item {
+  width: 100%;
+  height: 30px;
+  float: left;
+}
+.main-container .common-pop-up-box .print-server-verify-box .ceilBox .info-item .item-name {
+  width: 90px;
+  float: left;
+  text-align: justify;
+}
+.main-container .common-pop-up-box .print-server-verify-box .ceilBox .info-item .item-name i {
+  display: inline-block;
+  padding-left: 100%;
+  width: 100%;
+}
+.main-container .common-pop-up-box .print-server-verify-box .ceilBox .info-item .item-value {
+  margin-left: 30px;
+  float: left;
+}
+.main-container .common-pop-up-box .print-server-verify-box .ceilBox .info-item .radio-box {
+  float: left;
+}
+.main-container .common-pop-up-box .print-server-verify-box .ceilBox .info-item .radio-box .obj-radio-item {
+  margin-left: 30px;
+  float: left;
+  width: 90px;
+}
+.main-container .common-pop-up-box .print-server-verify-box .ceilBox .info-item .radio-box .obj-radio-item .obj-radio {
+  float: left;
+}
+.main-container .common-pop-up-box .print-server-verify-box .ceilBox .info-item .radio-box .obj-radio-item .obj-name {
+  float: left;
+}
+.main-container .common-pop-up-box .topbar,
+.main-container .common-pop-up-box .selec-branch-box {
+  background-color: #293240;
+}
+.main-container .common-pop-up-box .topbar {
+  height: 54px;
+}
+.main-container .common-pop-up-box .topbar .set-title {
+  float: left;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+  color: white;
+}
+.main-container .common-pop-up-box .topbar .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 17px 20px 17px 20px;
+}
+.main-container .common-pop-up-box .topbar .close img {
+  width: 20px;
+  height: 20px;
+}
+.main-container .common-pop-up-box .topbar .close:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .selec-branch-box {
+  height: 56px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+}
+.main-container .common-pop-up-box .selec-branch-box .yes {
+  border-radius: 2px;
+  padding-top: 9px;
+  cursor: pointer;
+  height: 32px;
+  line-height: 14px;
+  display: inline-block;
+  text-align: center;
+  background-color: #86A3C7;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 106px;
+  color: white;
+}
+.main-container .common-pop-up-box .selec-branch-box .yes:hover {
+  background-color: #42A0D6;
+}
+.main-container .common-pop-up-box .selec-branch-box .font-select {
+  height: 24px;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 106px;
+  color: black;
+}
+.dragToCanvDiv {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  border: 4px solid #424242;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: black;
+  z-index: 8000;
+}
+.dragStdToCanvDiv {
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  border: 4px solid #424242;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: black;
+  z-index: 8000;
+}
+.dragStdToCanvDiv .name,
+.dragStdToCanvDiv .date,
+.dragStdToCanvDiv .time {
+  text-align: center;
+  width: 100%;
+  color: yellow;
+  float: left;
+  pointer-events: none;
+  height: 30%;
+  line-height: 30px;
+}
+.magnifyTool {
+  border: 1px solid blue !important;
+  background-color: black !important;
+  border-radius: 50%;
+}
+.nav-tabs {
+  border-bottom-color: transparent !important;
+}
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a {
+  height: 54px;
+  line-height: 40px;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  height: 54px;
+  line-height: 40px;
+  color: #42A0D6;
+  background-color: #293240;
+}
