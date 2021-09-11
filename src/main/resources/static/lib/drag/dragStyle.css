@@ -1,0 +1,129 @@
+/* style */
+
+img{display:block;width:100%;height:auto;}
+/*.drag-box{width:50%;height:350px;background-color:#3bb3e0;margin:0 auto 50px;border:1px solid #2561b4;}*/
+.drag-box{
+
+}
+.drag{width:130px;height:150px;}
+
+.handler {
+    background: gray;
+    color: #fff;
+    /*text-align: center;*/
+    font-size: 14px;
+    line-height: 20px;
+    height: 30px;
+}
+
+.titleDrag {
+    color: #fff;
+    /*text-align: center;*/
+    font-size: 12px;
+    line-height: 20px;
+    pointer-events: none;
+    text-align:justify;
+    text-justify:distribute-all-lines;/*ie6-8*/
+    text-align-last:justify;/* ie9*/
+    -moz-text-align-last:justify;
+    -webkit-text-align-last:justify;
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
+    width:100px ;
+float: left;
+    padding: 5px 10px 5px 10px;
+}
+
+.closeDrag {
+    height: 30px;
+    width: 30px;
+    background: #ff0505;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    float: left;
+    padding: 5px 0px 5px 0px;
+}
+.closeDrag:hover{
+    background: #afa6a6;
+    cursor:pointer;
+}
+
+.drag.drag-1{width:130px;height:150px;top:100px;}
+
+.drag-box.drag-box-2{height:600px;}
+.drag.drag-2{width:150px;height:150px;left:50%;margin-left:-75px;}
+
+.drag.drag-4 {
+    width: 130px;
+    /*height: 170px;*/
+    height: fit-content;
+    background: #333;
+    position: absolute;
+
+}
+
+
+.drag-box.drag-box-5{width:80%;margin:0 auto 0;}
+.test{position:relative;width:50%;margin:0 auto 0;height:350px;padding:50px 0;background-color:#ddd;margin:0 auto 100px;border:1px solid #aaa;}
+.test i{display:block;position:absolute;top:10px;left:10px;}
+
+
+.log{width:50%;height:75px;line-height:25px;margin:0 auto 20px;font-size:16px;color:#333;}
+.log span{color:#cb0000;}
+
+/* 当点击拖动时，保证当前元素处于前端 */
+.drag.on{z-index:9;}
+
+
+
+.aiBox{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    float: left;
+
+}
+.aiType{
+    display: none;
+    width: 20px;
+    height: 130px;
+    border: black solid 1px;
+    background-color:black;
+    float: left;
+    color: #00BC8C;
+
+}
+
+.scanItem{
+    line-height: 25px;
+    height: 25px;
+    text-align: center;
+    vertical-align:middle;
+    border: #0b0b0b solid 1px;
+    /*writing-mode:tb-rl;*/
+    font-size:12px;
+
+}
+.scanItem:hover{
+    background-color: #00BC8C;
+}
+
+.aiResult{
+    overflow-y:scroll;
+    width: 130px;
+    float: left;
+    height: 130px;
+
+    vertical-align:middle;
+}
+
+.aiResult li{
+    margin: 5px 5px 5px 5px;
+}
+
+
+.aiResult span{
+    margin: 0px 5px 0px 5px;
+}
